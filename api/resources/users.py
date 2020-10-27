@@ -63,7 +63,8 @@ class UsersResource(Resource):
         if user is not None:
             user_payload = _user_payload(user)
             user_payload['success'] = True
-            return user_payload, 201
+            # return user_payload, 201
+            return 'added to db', 201
         else:
             return {
                 'success': False,
