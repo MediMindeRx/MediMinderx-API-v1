@@ -79,8 +79,16 @@ def create_app(config_name='default'):
         }), 404
 
     from api.resources.users import UsersResource, UserResource
+    from api.resources.locations import LocationsResource
+    from api.resources.schedules import SchedulesResource
+    from api.resources.reminders import UsersRemindersResource, ReminderResource, RemindersResource
 
     api.add_resource(UserResource, '/api/v1/users/<user_id>')
     api.add_resource(UsersResource, '/api/v1/users')
+    api.add_resource(LocationsResource, '/api/v1/locations')
+    api.add_resource(SchedulesResource, '/api/v1/schedules')
+    api.add_resource(ReminderResource, '/api/v1/reminders/<reminder_id>')
+    api.add_resource(RemindersResource, '/api/v1/reminders')
+    api.add_resource(UsersRemindersResource, '/api/v1/users_reminders')
 
     return app

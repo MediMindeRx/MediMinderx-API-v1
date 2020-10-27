@@ -45,7 +45,7 @@ class UsersResource(Resource):
         proceed = True
         errors = []
 
-        proceed, user_name, errors = _validate_field(
+        proceed, name, errors = _validate_field(
             data, 'name', proceed, errors)
 
         if proceed:
