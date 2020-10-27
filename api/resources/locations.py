@@ -31,6 +31,7 @@ def _location_payload(location):
         'location_name': location.location_name,
         'longitude': location.longitude,
         'latitude': location.latitude,
+        'address': location.address,
         'reminder_id': location.reminder_id
     }
 
@@ -46,6 +47,8 @@ class LocationsResource(Resource):
             data, 'longitude', proceed, errors)
         proceed, latitude, errors = _validate_field(
             data, 'latitude', proceed, errors)
+        proceed, address, errors = _validate_field(
+            data, 'address', proceed, errors)
         proceed, reminder_id, errors = _validate_field(
             data, 'reminder_id', proceed, errors)
 
@@ -54,6 +57,7 @@ class LocationsResource(Resource):
                 location_name=location_name,
                 longitude=longitude,
                 latitude = latitude,
+                address = address,
                 reminder_id = reminder_id
             )
             db.session.add(location)

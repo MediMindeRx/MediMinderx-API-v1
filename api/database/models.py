@@ -137,9 +137,10 @@ class Location(db.Model):
     location_name = Column(String(80), unique=True, nullable=False)
     longitude = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.String(50), nullable=False)
+    address = db.Column(db.String(50), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
-    def __init__(self, location_name, longitude, reminder_id, latitude, location_id=None):
+    def __init__(self, location_name, longitude, reminder_id, latitude, address, location_id=None):
         if location_name is not None:
             location_name = bleach.clean(location_name).strip()
             if location_name == '':
@@ -149,6 +150,7 @@ class Location(db.Model):
         self.reminder_id = reminder_id
         self.longitude = longitude
         self.latitude = latitude
+        self.address = address
         self.location_id = location_id
         if location_id is not None:
             self.id = location_id
