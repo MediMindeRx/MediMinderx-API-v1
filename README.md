@@ -197,8 +197,9 @@ Response:
             "id": 6,
             "attributes": {
               "days": "Tuesday, Wednesday",
-              "unix_date": "1603767106",
+              "unix_time": "1603767106",
               "creation_date": "2020-10-26T20:54:48.401702",
+              "repeating": false
               "times": "10:30"
             }
           }
@@ -221,6 +222,7 @@ Response:
                 "attributes": {
                     "location_name": "Home",
                     "longitude": "-77.0364",
+                    "address": "123 Address Lane"
                     "creation_date": "2020-10-26T20:56:33.014708",
                     "latitude": "38.8951"
                 }
@@ -245,6 +247,7 @@ Body:
   "reminder_id": "1",
   "schedule_name": "Soccer reminder",
   "unix_time": "1603767106",
+  "repeating": "false"
   "days": "Tuesday, Wednesday",
   "times": "10:30"
 }
@@ -258,7 +261,9 @@ Response:
     "attributes": {
     "id": 6,
       "days": "Tuesday, Wednesday",
-      "unix_date": "1603767106",
+      "unix_time": "1603767106",
+      "schedule_name": "Schedule 1",
+      "repeating": false
       "creation_date": "2020-10-26T20:54:48.401702",
       "times": "10:30"
     }
@@ -275,7 +280,8 @@ Body:
   "reminder_id": "5",
   "location_name": "Home",
   "latitude": "38.8951",
-  "longitude": "-77.0364"
+  "longitude": "-77.0364",
+  "address": "123 Address Lane"
 }
 ```
 
@@ -289,7 +295,8 @@ Response:
       "location_name": "Home",
       "longitude": "-77.0364",
       "creation_date": "2020-10-26T20:56:33.014708",
-      "latitude": "38.8951"
+      "latitude": "38.8951",
+      "address": "123 Address Lane"
     }
   }
 }
