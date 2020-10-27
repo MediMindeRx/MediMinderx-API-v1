@@ -28,14 +28,7 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 def _user_payload(user):
     return {
         'id': user.id,
-        'username': user.username,
-        'email': user.email,
-        'links': {
-            'get': f'/api/v1/users/{user.id}',
-            'patch': f'/api/v1/users/{user.id}',
-            'delete': f'/api/v1/users/{user.id}',
-            'index': '/api/v1/users',
-        }
+        'name': user.name
     }
 
 class UsersResource(Resource):
@@ -53,14 +46,11 @@ class UsersResource(Resource):
         errors = []
 
         proceed, user_name, errors = _validate_field(
-            data, 'username', proceed, errors)
-        proceed, user_email, errors = _validate_field(
-            data, 'email', proceed, errors)
+            data, 'name', proceed, errors)
 
         if proceed:
             user = User(
-                username=user_name,
-                email=user_email
+                name=name
             )
             db.session.add(user)
             db.session.commit()
@@ -83,7 +73,7 @@ class UsersResource(Resource):
 
     def get(self, *args, **kwargs):
         users = User.query.order_by(
-            User.username.asc()
+            User.name.asc()
         ).all()
         results = [_user_payload(user) for user in users]
         return {
@@ -123,10 +113,8 @@ class UserResource(Resource):
         proceed = True
         errors = []
         data = json.loads(request.data)
-        proceed, username, errors = _validate_field(
-            data, 'username', proceed, errors, missing_okay=True)
-        proceed, email, errors = _validate_field(
-            data, 'email', proceed, errors, missing_okay=True)
+        proceed, name, errors = _validate_field(
+            data, 'name', proceed, errors, missing_okay=True)
 
         if not proceed:
             return {
@@ -135,10 +123,8 @@ class UserResource(Resource):
                 'errors': errors
             }, 400
 
-        if username and len(username.strip()) > 0:
-            user.username = username
-        if email:
-            user.email = email
+        if name and len(name.strip()) > 0:
+            user.name = name
         user.update()
 
         user_payload = _user_payload(user)

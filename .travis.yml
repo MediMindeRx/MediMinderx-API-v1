@@ -16,10 +16,10 @@ script:
 deploy:
   provider: heroku
   api_key:
-    secure:
-  app: your-heroku-app-name
+    secure: iqo/u8OnSYxrW1cqdXFrju39tMYtJ0TLEHv+H5/j6tYdPSTiYA8e0/nH1D8ttNecFLvH7WdxCzcqv/hkVYEE0A5TXjwjW6Vblb56qGsqltgo9xmjfD5iNiwWOEZv5iIwHscIKp7FktWBIS6BZCcFpKXlyr7lbggP6/WkWyPRx1sAl61+T5Nxf69wKiSnkavvo5k3FzKe88hEQDc5d1KpTdRciT7Pzkw3uFuEfFnco+1zdX/rQKWwX1VI2faYY5izStHr0r7caKJh1ZqzEn7hxl4K2esSGEYeSBcOxyUXbUYWyQsxf1aVqF4wrgd8hQpLsBbQDoFBH/lFDyLO07J1YjfUD3KFi7yrWZRrAHEgwcJFTaEewboRATDZv2s8H3KpEYHDOc98DsUsx2jA+EiN/l2WsdJ1o9SHhMjeIapdNIh624iT+YXn/3pY83FfCjzyTvrbVLJ6TV8/k9yQktMUgQghHkCOevlaQ144iEQBx9urGXPUu98uBINn29IvjTKVXpKkZbIZtsAs0OYknQ+m7US9TQc8EI418NwmrenIKUYKIsvoTwcdbboxXrK9v+I2tutyZCrnvRu+NLL6tV+8ZnVwW0Yq/99sQZoDtxRVMDKYSDjgvg0bPSPp5J2WX7RrXbOVnP/rB3cHleBxeib06EurEx4jLAldeHULv2fzuW0=
+  app: MediMinderx-API-v1
   on:
-    repo: githubu_sername/repo_name
+    repo: MediMindeRx/MediMinderx-API-v1
     branch: main
   skip_cleanup: 'true'
   run:
