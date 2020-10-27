@@ -58,7 +58,7 @@ class Reminder(db.Model):
     supplies = db.Column(db.String(250), nullable=False)
     show_supplies = db.Column(db.String(50), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
-    user_id = db.Column(db.String(50), db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('reminders', lazy='dynamic'))
     schedule_id = db.Column(db.Integer, db.ForeignKey('schedules.id', ondelete='CASCADE'), nullable=True)
     schedule_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
@@ -97,11 +97,12 @@ class Schedule(db.Model):
     id = Column(Integer, primary_key=True)
     schedule_name = Column(String(80), unique=True, nullable=False)
     unix_time = db.Column(db.Integer, nullable=False)
+    reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
     times = db.Column(db.String(250), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
-    def __init__(self, schedule_name, unix_time, days, times, schedule_id=None):
+    def __init__(self, schedule_name, unix_time, reminder_id, days, times, schedule_id=None):
         if schedule_name is not None:
             schedule_name = bleach.clean(schedule_name).strip()
             if schedule_name == '':
@@ -111,6 +112,7 @@ class Schedule(db.Model):
         self.unix_time = unix_time
         self.days = days
         self.times = times
+        self.reminder_id = reminder_id
         self.schedule_id = schedule_id
         if schedule_id is not None:
             self.id = schedule_id
@@ -131,18 +133,20 @@ class Location(db.Model):
     __tablename__ = 'locations'
 
     id = Column(Integer, primary_key=True)
+    reminder_id = db.Column(db.Integer, nullable=False)
     location_name = Column(String(80), unique=True, nullable=False)
     longitude = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.String(50), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
-    def __init__(self, location_name, longitude, latitude, location_id=None):
+    def __init__(self, location_name, longitude, reminder_id, latitude, location_id=None):
         if location_name is not None:
             location_name = bleach.clean(location_name).strip()
             if location_name == '':
                 location_name = None
 
         self.location_name = location_name
+        self.reminder_id = reminder_id
         self.longitude = longitude
         self.latitude = latitude
         self.location_id = location_id

@@ -31,6 +31,7 @@ def _schedule_payload(schedule):
         'schedule_name': schedule.schedule_name,
         'unix_time': schedule.unix_time,
         'days': schedule.days,
+        'reminder_id': schedule.reminder_id,
         'times': schedule.times
     }
 
@@ -48,13 +49,16 @@ class SchedulesResource(Resource):
             data, 'days', proceed, errors)
         proceed, times, errors = _validate_field(
             data, 'times', proceed, errors)
+        proceed, reminder_id, errors = _validate_field(
+            data, 'reminder_id', proceed, errors)
 
         if proceed:
             schedule = Schedule(
                 schedule_name=schedule_name,
                 unix_time=unix_time,
                 times=times,
-                days = days
+                days = days,
+                reminder_id = reminder_id
             )
             db.session.add(schedule)
             db.session.commit()

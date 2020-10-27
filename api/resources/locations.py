@@ -30,7 +30,8 @@ def _location_payload(location):
         'id': location.id,
         'location_name': location.location_name,
         'longitude': location.longitude,
-        'latitude': location.latitude
+        'latitude': location.latitude,
+        'reminder_id': location.reminder_id
     }
 
 
@@ -41,29 +42,32 @@ class LocationsResource(Resource):
 
         proceed, location_name, errors = _validate_field(
             data, 'location_name', proceed, errors)
-        proceed, longitute, errors = _validate_field(
-            data, 'longitute', proceed, errors)
+        proceed, longitude, errors = _validate_field(
+            data, 'longitude', proceed, errors)
         proceed, latitude, errors = _validate_field(
             data, 'latitude', proceed, errors)
+        proceed, reminder_id, errors = _validate_field(
+            data, 'reminder_id', proceed, errors)
 
         if proceed:
             location = Location(
                 location_name=location_name,
                 longitude=longitude,
-                latitude = latitude
+                latitude = latitude,
+                reminder_id = reminder_id
             )
             db.session.add(location)
             db.session.commit()
+            last_location = db.session.query(Location).order_by(Location.id.desc()).first()
+            reminder = Reminder.query.filter_by(id=reminder_id).first()
+            reminder.location_id = location.id
+            reminder.update()
             return location, errors
         else:
             return None, errors
 
     def post(self, *args, **kwargs):
         location, errors = self._create_location(json.loads(request.data))
-        last_location = db.session.query(Location).order_by(Location.id.desc()).first()
-        reminder = Reminder.query.filter_by(id=reminder_id).first()
-        reminder.location_id = location.id
-        reminder.update()
 
         if location is not None:
             location_payload = _location_payload(location)
