@@ -1,4 +1,4 @@
-### POST `/api/users`
+### POST `https://mediminderx-api.herokuapp.com/api/v1/users`
 
 Body:
 `json {"name": "John"}`
@@ -17,7 +17,7 @@ Response:
 ```
 
 
-### GET `/api/users/1`
+### GET `https://mediminderx-api.herokuapp.com/api/v1/users/1`
 
 Response:
 ```json {
@@ -35,7 +35,7 @@ Response:
 ```
 
 
-### GET `/api/users`
+### GET `https://mediminderx-api.herokuapp.com/api/v1/users`
 
 Response:
 ```json {
@@ -60,7 +60,7 @@ Response:
 ```
 
 
-### PUT `/api/users`
+### PUT `https://mediminderx-api.herokuapp.com/api/v1/users`
 
 Body:
 ```json {
@@ -84,7 +84,7 @@ Response:
 ```
 
 
-### DELETE `/api/users`
+### DELETE `https://mediminderx-api.herokuapp.com/api/v1/users`
 
 Body:
 ```json{}
@@ -101,7 +101,7 @@ Response:
 ```
 
 
-### POST `/api/reminders`
+### POST `https://mediminderx-api.herokuapp.com/api/v1/reminders`
 
 Body:
 ```json{}
@@ -133,7 +133,7 @@ Response:
 ```
 
 
-### PUT `/api/reminders`
+### PUT `https://mediminderx-api.herokuapp.com/api/v1/reminders`
 
 Body:
 ```json{}
@@ -165,7 +165,7 @@ Response:
 ```
 
 
-### DELETE `/api/reminders`
+### DELETE `https://mediminderx-api.herokuapp.com/api/v1/reminders`
 
 Body:
 `{ "id": "3" }`
@@ -178,7 +178,7 @@ Response:
 ```
 
 
-### GET `/api/users/1/reminders`
+### GET `https://mediminderx-api.herokuapp.com/api/v1/users/1/reminders`
 
 Response:
 ```json{}
@@ -239,7 +239,7 @@ Response:
 ```
 
 
-### `/api/schedules`
+### POST `https://mediminderx-api.herokuapp.com/api/v1/schedules`
 
 Body:
 ```json{}
@@ -272,7 +272,7 @@ Response:
 ```
 
 
-### `/api/users/1/locations`
+### POST `https://mediminderx-api.herokuapp.com/api/v1/users/1/locations`
 
 Body:
 ```json{}
