@@ -7,7 +7,9 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import User
+from api.database.models import User, UsersSchema
+users_schema = UsersSchema(many=True)
+user_schema = UsersSchema()
 
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
@@ -61,9 +63,8 @@ class UsersResource(Resource):
     def post(self, *args, **kwargs):
         user, errors = self._create_user(json.loads(request.data))
         if user is not None:
-            user_payload = _user_payload(user)
-            user_payload['success'] = True
-            return user_payload, 201
+            result = user_schema.dump(user)
+            return result, 201
         else:
             return {
                 'success': False,
@@ -73,40 +74,17 @@ class UsersResource(Resource):
 
     def get(self, *args, **kwargs):
         users = User.query.order_by(
-            User.name.asc()
+            User.id.asc()
         ).all()
-        results = [_user_payload(user) for user in users]
-        return {
-            'success': True,
-            'results': results
-        }, 200
-
-
-class UserResource(Resource):
-    """
-    this Resource file is for our /users endpoints which do require
-    a resource ID in the URI path
-    GET /users/6
-    DELETE /users/3
-    PATCH /users/18
-    """
-    def get(self, *args, **kwargs):
-        user_id = int(bleach.clean(kwargs['user_id'].strip()))
-        user = None
-        try:
-            user = db.session.query(User).filter_by(id=user_id).one()
-        except NoResultFound:
-            return abort(404)
-
-        user_payload = _user_payload(user)
-        user_payload['success'] = True
-        return user_payload, 200
+        results = users_schema.dump(users)
+        return results, 200
 
     def patch(self, *args, **kwargs):
-        user_id = int(bleach.clean(kwargs['user_id'].strip()))
+        json_data = request.get_json(force=True)
+        user_id = int(bleach.clean(json_data['id'].strip()))
         user = None
         try:
-            user = db.session.query(User).filter_by(id=user_id).one()
+            user = User.query.filter_by(id=json_data['id']).first()
         except NoResultFound:
             return abort(404)
 
@@ -127,17 +105,34 @@ class UserResource(Resource):
             user.name = name
         user.update()
 
-        user_payload = _user_payload(user)
-        user_payload['success'] = True
-        return user_payload, 200
+        result = user_schema.dump(user)
+        return result, 201
 
     def delete(self, *args, **kwargs):
-        user_id = kwargs['user_id']
+        json_data = request.get_json(force=True)
+        user = None
+        try:
+            user = User.query.filter_by(id=json_data['id']).first()
+        except NoResultFound:
+            return abort(404)
+
+        user.delete()
+        return {'message': 'User has been successfully deleted'}, 200
+
+
+class UserResource(Resource):
+    """
+    this Resource file is for our /users endpoints which do require
+    a resource ID in the URI path
+    GET /users/6
+    """
+    def get(self, *args, **kwargs):
+        user_id = int(bleach.clean(kwargs['user_id'].strip()))
         user = None
         try:
             user = db.session.query(User).filter_by(id=user_id).one()
         except NoResultFound:
             return abort(404)
 
-        user.delete()
-        return {}, 204
+        result = user_schema.dump(user)
+        return result, 200

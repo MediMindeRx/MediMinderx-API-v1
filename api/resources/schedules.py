@@ -7,7 +7,10 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Schedule, Reminder
+from api.database.models import Schedule, Reminder, SchedulesSchema
+
+schedules_schema = SchedulesSchema(many=True)
+schedule_schema = SchedulesSchema()
 
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
@@ -25,17 +28,6 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
     return proceed, data[field], errors
 
 
-def _schedule_payload(schedule):
-    return {
-        'id': schedule.id,
-        'schedule_name': schedule.schedule_name,
-        'unix_time': schedule.unix_time,
-        'days': schedule.days,
-        'reminder_id': schedule.reminder_id,
-        'times': schedule.times
-    }
-
-
 class SchedulesResource(Resource):
     def _create_schedule(self, data):
         proceed = True
@@ -49,6 +41,8 @@ class SchedulesResource(Resource):
             data, 'days', proceed, errors)
         proceed, times, errors = _validate_field(
             data, 'times', proceed, errors)
+        proceed, repeating, errors = _validate_field(
+            data, 'repeating', proceed, errors)
         proceed, reminder_id, errors = _validate_field(
             data, 'reminder_id', proceed, errors)
 
@@ -58,13 +52,14 @@ class SchedulesResource(Resource):
                 unix_time=unix_time,
                 times=times,
                 days = days,
+                repeating = repeating,
                 reminder_id = reminder_id
             )
             db.session.add(schedule)
             db.session.commit()
-            last_schedule = db.session.query(Schedule).order_by(Schedule.id.desc()).first()
+            last_schedule = Schedule.query.filter_by(schedule_name=schedule_name)
             reminder = Reminder.query.filter_by(id=reminder_id).first()
-            reminder.schedule_id = schedule.id
+            reminder.schedule_id = last_schedule.id
             reminder.update()
             return schedule, errors
         else:
@@ -72,11 +67,12 @@ class SchedulesResource(Resource):
 
     def post(self, *args, **kwargs):
         schedule, errors = self._create_schedule(json.loads(request.data))
+        json_data = request.get_json(force=True)
 
         if schedule is not None:
-            schedule_payload = _schedule_payload(schedule)
-            schedule_payload['success'] = True
-            return schedule_payload, 201
+            schedule = Schedule.query.filter_by(schedule_name=json_data['schedule_name']).first()
+            result = schedule_schema.dump(schedule)
+            return result, 201
         else:
             return {
                 'success': False,

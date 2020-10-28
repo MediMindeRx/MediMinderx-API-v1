@@ -7,11 +7,12 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Reminder
+from api.database.models import Reminder, RemindersSchema
+
+reminders_schema = RemindersSchema(many=True)
+reminder_schema = RemindersSchema()
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
-
-    print(data[field])
 
     if field in data:
         # sanitize the reminder input here
@@ -26,22 +27,23 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 
     return proceed, data[field], errors
 
-def _reminder_payload(reminder):
-    return {
-      "data": {
-        "type": "reminders",
-        "id": reminder.id,
-        "attributes": {
-            "user_id": reminder.user_id,
-            "location_reminder": null,
-            "creation_date": reminder.creation_date,
-            "schedule_reminder": null,
-            "supplies": reminder.supplies,
-            "show_supplies": reminder.show_supplies,
-            "title": reminder.title
-        }
-      }
-    }
+
+# def _reminder_payload(reminder):
+#     return {
+#       "data": {
+#         "type": "reminders",
+#         "id": reminder.id,
+#         "attributes": {
+#             "user_id": reminder.user_id,
+#             "location_reminder": null,
+#             "creation_date": reminder.creation_date,
+#             "schedule_reminder": null,
+#             "supplies": reminder.supplies,
+#             "show_supplies": reminder.show_supplies,
+#             "title": reminder.title
+#         }
+#       }
+#     }
 
 
 class RemindersResource(Resource):
@@ -73,11 +75,9 @@ class RemindersResource(Resource):
 
     def post(self, *args, **kwargs):
         reminder, errors = self._create_reminder(json.loads(request.data))
-        print(f'{reminder} POST reminders')
         if reminder is not None:
-            reminder_payload = _reminder_payload(reminder)
-            reminder_payload['success'] = True
-            return reminder_payload, 201
+            result = reminder_schema.dump(reminder)
+            return result, 201
         else:
             return {
                 'success': False,
@@ -89,38 +89,15 @@ class RemindersResource(Resource):
         reminders = Reminder.query.order_by(
             Reminder.id.asc()
         ).all()
-        results = [_reminder_payload(reminder) for reminder in reminders]
-        return {
-            'success': True,
-            'results': results
-        }, 200
-
-
-class ReminderResource(Resource):
-    """
-    this Resource file is for our /users endpoints which do require
-    a resource ID in the URI path
-    GET /users/6
-    DELETE /users/3
-    PATCH /users/18
-    """
-    def get(self, *args, **kwargs):
-        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
-        reminder = None
-        try:
-            reminder = db.session.query(Reminder).filter_by(id=reminder_id).one()
-        except NoResultFound:
-            return abort(404)
-
-        reminder_payload = _reminder_payload(reminder)
-        reminder_payload['success'] = True
-        return reminder_payload, 200
+        results = reminders_schema.dump(reminders)
+        return results, 200
 
     def patch(self, *args, **kwargs):
-        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
+        json_data = request.get_json(force=True)
+        reminder_id = int(bleach.clean(json_data['id'].strip()))
         reminder = None
         try:
-            reminder = db.session.query(Reminder).filter_by(id=reminder_id).one()
+            reminder = Reminder.query.filter_by(id=json_data['id']).first()
         except NoResultFound:
             return abort(404)
 
@@ -130,11 +107,9 @@ class ReminderResource(Resource):
         proceed, title, errors = _validate_field(
             data, 'title', proceed, errors, missing_okay=True)
         proceed, supplies, errors = _validate_field(
-                    data, 'supplies', proceed, errors)
+            data, 'supplies', proceed, errors, missing_okay=True)
         proceed, show_supplies, errors = _validate_field(
-            data, 'show_supplies', proceed, errors)
-        proceed, user_id, errors = _validate_field(
-            data, 'user_id', proceed, errors)
+            data, 'show_supplies', proceed, errors, missing_okay=True)
 
         if not proceed:
             return {
@@ -143,32 +118,45 @@ class ReminderResource(Resource):
                 'errors': errors
             }, 400
 
-        if title and len(title.strip()) > 0:
+        if title:
             reminder.title = title
-        reminder.update()
+        if supplies:
+            reminder.supplies = supplies
+        if show_supplies:
+            reminder.show_supplies = show_supplies
+        db.session.commit()
 
-        reminder_payload = _reminder_payload(reminder)
-        reminder_payload['success'] = True
-        return reminder_payload, 200
+        result = reminder_schema.dump(reminder)
+        return result, 200
 
     def delete(self, *args, **kwargs):
-        reminder_id = kwargs['reminder_id']
+        json_data = request.get_json(force=True)
+        reminder = None
+        try:
+            reminder = Reminder.query.filter_by(id=json_data['id']).first()
+        except NoResultFound:
+            return abort(404)
+
+        reminder.delete()
+        return {'message': 'Reminder successfully deleted'}, 200
+
+class ReminderResource(Resource):
+    def get(self, *args, **kwargs):
+        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
         reminder = None
         try:
             reminder = db.session.query(Reminder).filter_by(id=reminder_id).one()
         except NoResultFound:
             return abort(404)
 
-        reminder.delete()
-        return {}, 204
+        result = reminder_schema.dump(reminder)
+        return result, 200
 
 class UsersRemindersResource(Resource):
     def get(self, *args, **kwargs):
-        reminders = Reminder.queryfilter_by(user_id=user_id).order_by(
+        user_id = int(bleach.clean(kwargs['user_id'].strip()))
+        reminders = Reminder.query.filter_by(user_id=user_id).order_by(
             Reminder.id.asc()
         ).all()
-        results = [_reminder_payload(reminder) for reminder in reminders]
-        return {
-            'success': True,
-            'results': results
-        }, 200
+        results = reminders_schema.dump(reminders)
+        return results, 200

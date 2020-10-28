@@ -105,7 +105,7 @@ class Schedule(db.Model):
     unix_time = db.Column(db.Integer, nullable=False)
     reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
-    reapeating = db.Column(db.String(250), nullable=False)
+    repeating = db.Column(db.String(250), nullable=False)
     times = db.Column(db.String(250), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
