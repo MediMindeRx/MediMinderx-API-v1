@@ -1,6 +1,13 @@
 import bleach
 from sqlalchemy import Column, String, Integer
 from api import db
+from marshmallow_jsonapi import fields, Schema
+from flask_marshmallow import Marshmallow
+from flask_sqlalchemy import SQLAlchemy
+
+
+ma = Marshmallow()
+db = SQLAlchemy()
 
 
 class User(db.Model):
@@ -50,7 +57,6 @@ class User(db.Model):
 
 
 class Reminder(db.Model):
-    print('Connecting to reminder db')
     __tablename__ = 'reminders'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -99,10 +105,11 @@ class Schedule(db.Model):
     unix_time = db.Column(db.Integer, nullable=False)
     reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
+    reapeating = db.Column(db.String(250), nullable=False)
     times = db.Column(db.String(250), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
-    def __init__(self, schedule_name, unix_time, reminder_id, days, times, schedule_id=None):
+    def __init__(self, schedule_name, unix_time, reminder_id, days, times, repeating, schedule_id=None):
         if schedule_name is not None:
             schedule_name = bleach.clean(schedule_name).strip()
             if schedule_name == '':
@@ -112,6 +119,7 @@ class Schedule(db.Model):
         self.unix_time = unix_time
         self.days = days
         self.times = times
+        self.repeating = repeating
         self.reminder_id = reminder_id
         self.schedule_id = schedule_id
         if schedule_id is not None:
@@ -165,3 +173,50 @@ class Location(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+class UsersSchema(Schema):
+    class Meta:
+        type_ = 'users'
+        strict = True
+    id = fields.Integer(dump_only=True)
+    name = fields.String(required=True)
+    creation_date = fields.DateTime()
+
+
+class RemindersSchema(ma.Schema, Schema):
+    class Meta:
+        type_ = 'reminders'
+        strict = True
+    id = fields.Integer(dump_only=True)
+    user_id = fields.Integer(required=True)
+    title = fields.String(required=True)
+    supplies = fields.String(required=True)
+    show_supplies = fields.Boolean(required=True)
+    creation_date = fields.DateTime()
+    # location_reminder = ma.Nested(LocationSchema)
+    # scheduled_reminder = ma.Nested(ScheduledSchema)
+
+
+class SchedulesSchema(Schema):
+    class Meta:
+        type_ = 'schedules'
+        strict = True
+    id = fields.Integer(dump_only=True)
+    unix_time = fields.String(required=True)
+    days = fields.String(required=True)
+    times = fields.String(required=True)
+    repeating = fields.String(required=True)
+    creation_date = fields.DateTime()
+
+
+class LocationsSchema(Schema):
+    class Meta:
+        type_ = 'locations'
+        strict = True
+    id = fields.Integer(dump_only=True)
+    location_name = fields.String(required=True)
+    longitude = fields.String(required=True)
+    latitude = fields.String(required=True)
+    address = fields.String(required=True)
+    creation_date = fields.DateTime()
