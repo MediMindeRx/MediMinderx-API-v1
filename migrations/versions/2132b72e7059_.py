@@ -22,35 +22,32 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('reminder_id', sa.Integer(), nullable=False),
     sa.Column('location_name', sa.String(length=80), nullable=False),
-    sa.Column('longitude', sa.String(length=50), nullable=False),
-    sa.Column('latitude', sa.String(length=50), nullable=False),
-    sa.Column('address', sa.String(length=50), nullable=False),
+    sa.Column('longitude', sa.String(length=50), nullable=True),
+    sa.Column('latitude', sa.String(length=50), nullable=True),
+    sa.Column('address', sa.String(length=50), nullable=True),
     sa.Column('creation_date', sa.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('location_name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('schedules',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('schedule_name', sa.String(length=80), nullable=False),
-    sa.Column('unix_time', sa.Integer(), nullable=False),
-    sa.Column('reminder_id', sa.Integer(), nullable=False),
-    sa.Column('days', sa.String(length=250), nullable=False),
-    sa.Column('times', sa.String(length=250), nullable=False),
-    sa.Column('repeating', sa.String(length=250), nullable=False),
+    sa.Column('unix_time', sa.Integer(), nullable=True),
+    sa.Column('reminder_id', sa.Integer(), nullable=True),
+    sa.Column('days', sa.String(length=250), nullable=True),
+    sa.Column('times', sa.String(length=250), nullable=True),
+    sa.Column('repeating', sa.String(length=250), nullable=True),
     sa.Column('creation_date', sa.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('schedule_name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=80), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('reminders',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=80), nullable=False),
-    sa.Column('supplies', sa.String(length=250), nullable=False),
+    sa.Column('supplies', sa.String(length=250), nullable=True),
     sa.Column('show_supplies', sa.String(length=50), nullable=False),
     sa.Column('creation_date', sa.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -59,8 +56,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['location_id'], ['locations.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['schedule_id'], ['schedules.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('title')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 

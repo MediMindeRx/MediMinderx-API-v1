@@ -61,7 +61,7 @@ class Reminder(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=True, nullable=False)
-    supplies = db.Column(db.String(250), nullable=False)
+    supplies = db.Column(db.String(250), nullable=True)
     show_supplies = db.Column(db.String(50), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
@@ -102,11 +102,11 @@ class Schedule(db.Model):
 
     id = Column(Integer, primary_key=True)
     schedule_name = Column(String(80), unique=True, nullable=False)
-    unix_time = db.Column(db.Integer, nullable=False)
+    unix_time = db.Column(db.Integer, nullable=True)
     reminder_id = db.Column(db.Integer, nullable=False)
-    days = db.Column(db.String(250), nullable=False)
-    repeating = db.Column(db.String(250), nullable=False)
-    times = db.Column(db.String(250), nullable=False)
+    days = db.Column(db.String(250), nullable=True)
+    repeating = db.Column(db.String(250), nullable=True)
+    times = db.Column(db.String(250), nullable=True)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
     def __init__(self, schedule_name, unix_time, reminder_id, days, times, repeating, schedule_id=None):
@@ -143,9 +143,9 @@ class Location(db.Model):
     id = Column(Integer, primary_key=True)
     reminder_id = db.Column(db.Integer, nullable=False)
     location_name = Column(String(80), unique=True, nullable=False)
-    longitude = db.Column(db.String(50), nullable=False)
-    latitude = db.Column(db.String(50), nullable=False)
-    address = db.Column(db.String(50), nullable=False)
+    longitude = db.Column(db.String(50), nullable=True)
+    latitude = db.Column(db.String(50), nullable=True)
+    address = db.Column(db.String(50), nullable=True)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
 
     def __init__(self, location_name, longitude, reminder_id, latitude, address, location_id=None):

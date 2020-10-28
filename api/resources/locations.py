@@ -63,8 +63,8 @@ class LocationsResource(Resource):
             return None, errors
 
     def post(self, *args, **kwargs):
-        location, errors = self._create_location(json.loads(request.data))
         json_data = request.get_json(force=True)
+        location, errors = self._create_location(json_data))
 
         if location is not None:
             location = Location.query.filter_by(location_name=json_data['location_name']).first()
