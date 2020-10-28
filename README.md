@@ -247,7 +247,7 @@ Body:
   "reminder_id": "1",
   "schedule_name": "Soccer reminder",
   "unix_time": "1603767106",
-  "repeating": "false"
+  "repeating": "false",
   "days": "Tuesday, Wednesday",
   "times": "10:30"
 }

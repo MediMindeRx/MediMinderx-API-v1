@@ -89,6 +89,6 @@ def create_app(config_name='default'):
     api.add_resource(SchedulesResource, '/api/v1/schedules')
     api.add_resource(ReminderResource, '/api/v1/reminders/<reminder_id>')
     api.add_resource(RemindersResource, '/api/v1/reminders')
-    api.add_resource(UsersRemindersResource, '/api/v1/users_reminders')
+    api.add_resource(UsersRemindersResource, '/api/v1/users/<user_id>/reminders')
 
     return app

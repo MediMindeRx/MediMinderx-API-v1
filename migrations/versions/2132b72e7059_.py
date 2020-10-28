@@ -1,7 +1,7 @@
 """empty message
 
 Revision ID: 2132b72e7059
-Revises: 
+Revises:
 Create Date: 2020-10-27 16:50:59.335674
 
 """
@@ -36,6 +36,7 @@ def upgrade():
     sa.Column('reminder_id', sa.Integer(), nullable=False),
     sa.Column('days', sa.String(length=250), nullable=False),
     sa.Column('times', sa.String(length=250), nullable=False),
+    sa.Column('repeating', sa.String(length=250), nullable=False),
     sa.Column('creation_date', sa.TIMESTAMP(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('schedule_name')
