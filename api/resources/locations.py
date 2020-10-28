@@ -7,7 +7,10 @@ from flask_restful import Resource, abort
 from sqlalchemy.orm.exc import NoResultFound
 
 from api import db
-from api.database.models import Location, Reminder
+from api.database.models import Location, Reminder, LocationsSchema
+
+locations_schema = LocationsSchema(many=True)
+location_schema = LocationsSchema()
 
 
 def _validate_field(data, field, proceed, errors, missing_okay=False):
@@ -23,23 +26,6 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
         data[field] = ''
 
     return proceed, data[field], errors
-
-
-def _location_payload(location):
-    return {
-        'data': {
-            'type': 'locations',
-            'id': location.id,
-            'attributes': {
-                'location_name': location.location_name,
-                'longitude': location.longitude,
-                'latitude': location.latitude,
-                'address': location.address,
-                'reminder_id': location.reminder_id,
-                'creation_date': location.creation_date
-            }
-        }
-    }
 
 
 class LocationsResource(Resource):
@@ -68,21 +54,22 @@ class LocationsResource(Resource):
             )
             db.session.add(location)
             db.session.commit()
-            last_location = db.session.query(Location).order_by(Location.id.desc()).first()
-            reminder = Reminder.query.filter_by(id=reminder_id).first()
-            reminder.location_id = location.id
-            reminder.update()
+            last_location = db.session.query(Location).filter_by(location_name=location_name).one()
+            reminder = db.session.query(Reminder).filter_by(id=reminder_id).first()
+            reminder.location_id = last_location.id
+            db.session.commit()
             return location, errors
         else:
             return None, errors
 
     def post(self, *args, **kwargs):
         location, errors = self._create_location(json.loads(request.data))
+        json_data = request.get_json(force=True)
 
         if location is not None:
-            location_payload = _location_payload(location)
-            location_payload['success'] = True
-            return location_payload, 201
+            location = Location.query.filter_by(location_name=json_data['location_name']).first()
+            result = location_schema.dump(location)
+            return result, 201
         else:
             return {
                 'success': False,
