@@ -60,7 +60,7 @@ Response:
 ```
 
 
-### PUT `https://mediminderx-api.herokuapp.com/api/v1/users`
+### PATCH `https://mediminderx-api.herokuapp.com/api/v1/users`
 
 Body:
 ```json {
@@ -115,25 +115,23 @@ Body:
 
 Response:
 ```json{}
-{
-  "data": {
-    "type": "reminders",
-    "id": 3,
-    "attributes": {
-        "user_id": 1,
-        "location_reminder": null,
-        "creation_date": "2020-10-26T20:17:36.207302",
-        "schedule_reminder": null,
-        "supplies": "inhaler",
-        "show_supplies": false,
-        "title": "Soccer Practice"
-    }
+  {
+      "data": {
+          "type": "reminders",
+          "id": 2,
+          "attributes": {
+              "title": "Dance Practice",
+              "show_supplies": false,
+              "creation_date": "2020-10-27T21:39:28.399831",
+              "user_id": 3,
+              "supplies": "inhaler"
+          }
+      }
   }
-}
 ```
 
 
-### PUT `https://mediminderx-api.herokuapp.com/api/v1/reminders`
+### PATCH `https://mediminderx-api.herokuapp.com/api/v1/reminders`
 
 Body:
 ```json{}
