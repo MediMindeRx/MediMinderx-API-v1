@@ -27,12 +27,18 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 
 def _location_payload(location):
     return {
-        'id': location.id,
-        'location_name': location.location_name,
-        'longitude': location.longitude,
-        'latitude': location.latitude,
-        'address': location.address,
-        'reminder_id': location.reminder_id
+        'data': {
+            'type': 'locations',
+            'id': location.id,
+            'attributes': {
+                'location_name': location.location_name,
+                'longitude': location.longitude,
+                'latitude': location.latitude,
+                'address': location.address,
+                'reminder_id': location.reminder_id,
+                'creation_date': location.creation_date
+            }
+        }
     }
 
 

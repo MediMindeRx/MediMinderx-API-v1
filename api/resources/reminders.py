@@ -28,11 +28,19 @@ def _validate_field(data, field, proceed, errors, missing_okay=False):
 
 def _reminder_payload(reminder):
     return {
-        'id': reminder.id,
-        'title': reminder.title,
-        'supplies': reminder.supplies,
-        'show_supplies': reminder.show_supplies,
-        'user_id': reminder.user_id
+      "data": {
+        "type": "reminders",
+        "id": reminder.id,
+        "attributes": {
+            "user_id": reminder.user_id,
+            "location_reminder": null,
+            "creation_date": reminder.creation_date,
+            "schedule_reminder": null,
+            "supplies": reminder.supplies,
+            "show_supplies": reminder.show_supplies,
+            "title": reminder.title
+        }
+      }
     }
 
 
