@@ -30,7 +30,7 @@ class ExtendedAPI(Api):
                 "message": getattr(err.error, 'message')
                 }), err.code
 
-        if 'message' attribute isn't set, assume it's a core Python exception
+        # if 'message' attribute isn't set, assume it's a core Python exception
         if not getattr(err, 'message', None):
             original = getattr(err, "original_exception", None)
             return jsonify({
