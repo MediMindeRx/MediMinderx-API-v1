@@ -31,11 +31,11 @@ class ExtendedAPI(Api):
                 }), err.code
 
         # if 'message' attribute isn't set, assume it's a core Python exception
-        if not getattr(err, 'message', None):
-            original = getattr(err, "original_exception", None)
-            return jsonify({
-                'message': 'Server has encountered an unknown error'
-                }), 500
+        # if not getattr(err, 'message', None):
+        #     original = getattr(err, "original_exception", None)
+        #     return jsonify({
+        #         'message': 'Server has encountered an unknown error'
+        #         }), 500
 
         # Handle application-specific custom exceptions
         return jsonify(**err.kwargs), err.http_status_code
