@@ -69,7 +69,9 @@ class LocationsResource(Resource):
         json_data = request.get_json(force=True)
 
         if location is not None:
-            location = Location.query.filter_by(location_name=json_data['location_name']).first()
+            location = Location.query.order_by(
+                Location.id.desc()
+            ).first()
             result = location_schema.dump(location)
             return result, 201
         else:

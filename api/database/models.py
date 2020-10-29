@@ -66,10 +66,12 @@ class Reminder(db.Model):
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('reminders', lazy='dynamic'))
-    schedule_id = db.Column(db.Integer, db.ForeignKey('schedules.id', ondelete='CASCADE'), nullable=True)
+
     scheduled_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
-    location_id = db.Column(db.Integer, db.ForeignKey('locations.id', ondelete='CASCADE'), nullable=True)
     location_reminder = db.relationship('Location', backref=db.backref('reminders', lazy='dynamic'))
+
+    schedule_id = db.Column(db.Integer, db.ForeignKey('schedules.id', ondelete='CASCADE'), nullable=True)
+    location_id = db.Column(db.Integer, db.ForeignKey('locations.id', ondelete='CASCADE'), nullable=True)
 
 
     def __init__(self, title, supplies, show_supplies, user_id, reminder_id=None):
@@ -100,8 +102,8 @@ class Reminder(db.Model):
 class Schedule(db.Model):
     __tablename__ = 'schedules'
 
-    id = Column(Integer, primary_key=True)
-    schedule_name = Column(String(80), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    schedule_name = db.Column(db.String(80), nullable=False)
     unix_time = db.Column(db.Integer, nullable=False)
     reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
@@ -140,7 +142,7 @@ class Schedule(db.Model):
 class Location(db.Model):
     __tablename__ = 'locations'
 
-    id = Column(Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     reminder_id = db.Column(db.Integer, nullable=False)
     location_name = Column(String(80), nullable=False)
     longitude = db.Column(db.String(50), nullable=False)
