@@ -7,12 +7,6 @@ addons:
   postgresql: '9.6'
 install:
 - pip install -r requirements.txt
-before_script:
-- psql --version
-- psql -c 'create database yourdatabase_test;' -U postgres
-- python manage.py db upgrade
-script:
-- pytest
 deploy:
   provider: heroku
   api_key:
