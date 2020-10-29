@@ -54,7 +54,9 @@ class LocationsResource(Resource):
             )
             db.session.add(location)
             db.session.commit()
-            last_location = db.session.query(Location).filter_by(location_name=location_name).one()
+            last_location = Location.query.order_by(
+                Location.id.desc()
+            ).first()
             reminder = db.session.query(Reminder).filter_by(id=reminder_id).first()
             reminder.location_id = last_location.id
             db.session.commit()
@@ -67,7 +69,9 @@ class LocationsResource(Resource):
         json_data = request.get_json(force=True)
 
         if location is not None:
-            location = Location.query.filter_by(location_name=json_data['location_name']).first()
+            location = Location.query.order_by(
+                Location.id.desc()
+            ).first()
             result = location_schema.dump(location)
             return result, 201
         else:

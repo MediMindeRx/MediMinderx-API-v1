@@ -57,10 +57,13 @@ class SchedulesResource(Resource):
             )
             db.session.add(schedule)
             db.session.commit()
-            last_schedule = Schedule.query.filter_by(schedule_name=schedule_name).one()
+            last_schedule = Schedule.query.order_by(
+                Schedule.id.desc()
+            ).first()
             reminder = Reminder.query.filter_by(id=reminder_id).first()
             reminder.schedule_id = last_schedule.id
-            db.session.commit()
+            # db.session.commit()
+            reminder.update()
             return schedule, errors
         else:
             return None, errors
@@ -70,7 +73,9 @@ class SchedulesResource(Resource):
         json_data = request.get_json(force=True)
 
         if schedule is not None:
-            schedule = Schedule.query.filter_by(schedule_name=json_data['schedule_name']).first()
+            schedule = Schedule.query.order_by(
+                Schedule.id.desc()
+            ).first()
             result = schedule_schema.dump(schedule)
             return result, 201
         else:
