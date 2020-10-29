@@ -67,7 +67,7 @@ class Reminder(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('reminders', lazy='dynamic'))
     schedule_id = db.Column(db.Integer, db.ForeignKey('schedules.id', ondelete='CASCADE'), nullable=True)
-    schedule_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
+    scheduled_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id', ondelete='CASCADE'), nullable=True)
     location_reminder = db.relationship('Location', backref=db.backref('reminders', lazy='dynamic'))
 
