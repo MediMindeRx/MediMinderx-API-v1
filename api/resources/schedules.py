@@ -70,7 +70,9 @@ class SchedulesResource(Resource):
         json_data = request.get_json(force=True)
 
         if schedule is not None:
-            schedule = Schedule.query.filter_by(schedule_name=json_data['schedule_name']).first()
+            schedule = Schedule.query.order_by(
+                Schedule.id.desc()
+            ).first()
             result = schedule_schema.dump(schedule)
             return result, 201
         else:

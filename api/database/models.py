@@ -19,7 +19,7 @@ class User(db.Model):
     # Auto-incrementing, unique primary key
     id = Column(Integer, primary_key=True)
     # unique name
-    name = Column(String(80), unique=True, nullable=False)
+    name = Column(String(80), nullable=False)
 
     def __init__(self, name, user_id=None):
         if name is not None:
@@ -60,14 +60,14 @@ class Reminder(db.Model):
     __tablename__ = 'reminders'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), unique=True, nullable=False)
+    title = db.Column(db.String(80), nullable=False)
     supplies = db.Column(db.String(250), nullable=False)
     show_supplies = db.Column(db.String(50), nullable=False)
     creation_date = db.Column(db.TIMESTAMP, server_default=db.func.current_timestamp(), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('reminders', lazy='dynamic'))
     schedule_id = db.Column(db.Integer, db.ForeignKey('schedules.id', ondelete='CASCADE'), nullable=True)
-    schedule_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
+    scheduled_reminder = db.relationship('Schedule', backref=db.backref('reminders', lazy='dynamic'))
     location_id = db.Column(db.Integer, db.ForeignKey('locations.id', ondelete='CASCADE'), nullable=True)
     location_reminder = db.relationship('Location', backref=db.backref('reminders', lazy='dynamic'))
 
@@ -101,7 +101,7 @@ class Schedule(db.Model):
     __tablename__ = 'schedules'
 
     id = Column(Integer, primary_key=True)
-    schedule_name = Column(String(80), unique=True, nullable=False)
+    schedule_name = Column(String(80), nullable=False)
     unix_time = db.Column(db.Integer, nullable=False)
     reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
@@ -142,7 +142,7 @@ class Location(db.Model):
 
     id = Column(Integer, primary_key=True)
     reminder_id = db.Column(db.Integer, nullable=False)
-    location_name = Column(String(80), unique=True, nullable=False)
+    location_name = Column(String(80), nullable=False)
     longitude = db.Column(db.String(50), nullable=False)
     latitude = db.Column(db.String(50), nullable=False)
     address = db.Column(db.String(50), nullable=False)
