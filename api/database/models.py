@@ -104,7 +104,7 @@ class Schedule(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     schedule_name = db.Column(db.String(80), nullable=False)
-    unix_time = db.Column(db.Integer, nullable=False)
+    unix_time = db.Column(db.String(80), nullable=False)
     reminder_id = db.Column(db.Integer, nullable=False)
     days = db.Column(db.String(250), nullable=False)
     repeating = db.Column(db.String(250), nullable=False)

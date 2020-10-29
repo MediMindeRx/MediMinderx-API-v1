@@ -31,7 +31,7 @@ def upgrade():
     op.create_table('schedules',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('schedule_name', sa.String(length=80), nullable=False),
-    sa.Column('unix_time', sa.Integer(), nullable=False),
+    sa.Column('unix_time', sa.String(80), nullable=False),
     sa.Column('reminder_id', sa.Integer(), nullable=False),
     sa.Column('days', sa.String(length=250), nullable=False),
     sa.Column('times', sa.String(length=250), nullable=False),
