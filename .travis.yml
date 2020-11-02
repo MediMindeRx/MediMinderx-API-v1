@@ -11,7 +11,7 @@ before_script:
 - psql --version
 - psql -c 'create database mideminderx_test;' -U postgres
 script:
-- pytest
+- python -m pytest -v
 deploy:
   provider: heroku
   api_key:
