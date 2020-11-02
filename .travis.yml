@@ -1,4 +1,5 @@
 language: python
+os: osx
 python:
 - '3.8'
 services:
@@ -20,8 +21,8 @@ deploy:
   app: MediMinderx-API-v1
   on:
     repo: MediMindeRx/MediMinderx-API-v1
-    branch: main
-  skip_cleanup: 'true'
+    branch: feature-travis-deploy
+  cleanup: 'true'
   run:
     - pip install -r requirements.txt
     - python manage.py db upgrade
