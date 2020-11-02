@@ -16,13 +16,8 @@ class GetUserTest(unittest.TestCase):
         db.create_all()
         self.client = self.app.test_client()
 
-        self.user_1 = User(username='zzz 1', email='e1')
+        self.user_1 = User(name='zzz 1')
         self.user_1.insert()
-
-    def tearDown(self):
-        db.session.remove()
-        db_drop_everything(db)
-        self.app_context.pop()
 
     def test_happypath_get_a_user(self):
         response = self.client.get(
@@ -31,30 +26,11 @@ class GetUserTest(unittest.TestCase):
         self.assertEqual(200, response.status_code)
 
         data = json.loads(response.data.decode('utf-8'))
-        assert_payload_field_type_value(self, data, 'success', bool, True)
 
         assert_payload_field_type_value(
-            self, data, 'username', str, self.user_1.username
+            self, data['data']['attributes'], 'name', str, self.user_1.name
         )
-        assert_payload_field_type_value(
-            self, data, 'email', str, self.user_1.email
-        )
-
-        user_id = data['id']
-        assert_payload_field_type(self, data, 'links', dict)
-        links = data['links']
-        assert_payload_field_type_value(
-            self, links, 'get', str, f'/api/v1/users/{user_id}'
-        )
-        assert_payload_field_type_value(
-            self, links, 'patch', str, f'/api/v1/users/{user_id}'
-        )
-        assert_payload_field_type_value(
-            self, links, 'delete', str, f'/api/v1/users/{user_id}'
-        )
-        assert_payload_field_type_value(
-            self, links, 'index', str, '/api/v1/users'
-        )
+        user_id = data['data']['id']
 
     def test_endpoint_sadpath_bad_id_user(self):
         response = self.client.get(
@@ -68,3 +44,8 @@ class GetUserTest(unittest.TestCase):
         assert_payload_field_type_value(
             self, data, 'message', str, 'resource not found'
         )
+
+    # def tearDown(self):
+    #     db.session.remove()
+    #     db_drop_everything(db)
+    #     self.app_context.pop()

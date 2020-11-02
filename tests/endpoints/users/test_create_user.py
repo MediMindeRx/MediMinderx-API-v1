@@ -20,10 +20,10 @@ class CreateUserTest(unittest.TestCase):
             'name': ' new_name '
         }
 
-    def tearDown(self):
-        db.session.remove()
-        db_drop_everything(db)
-        self.app_context.pop()
+    # def tearDown(self):
+    #     db.session.remove()
+    #     db_drop_everything(db)
+    #     self.app_context.pop()
 
     def test_happypath_create_user(self):
         payload = deepcopy(self.payload)
