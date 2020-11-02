@@ -1,6 +1,6 @@
 language: python
 python:
-- '3.8'
+- '3.7.3'
 services:
 - postgresql
 addons:
@@ -9,7 +9,7 @@ install:
 - pip install -r requirements.txt
 before_script:
 - psql --version
-- psql -c 'create database yourdatabase_test;' -U postgres
+- psql -c 'create database mediminder_test;' -U postgres
 - python manage.py db upgrade
 script:
 - pytest
@@ -21,7 +21,6 @@ deploy:
   on:
     repo: MediMindeRx/MediMinderx-API-v1
     branch: main
-  skip_cleanup: 'true'
   run:
     - pip install -r requirements.txt
     - python manage.py db upgrade
