@@ -102,6 +102,7 @@ class Reminder(db.Model):
 class Schedule(db.Model):
     __tablename__ = 'schedules'
 
+
     id = db.Column(db.Integer, primary_key=True)
     schedule_name = db.Column(db.String(80), nullable=False)
     unix_time = db.Column(db.String(80), nullable=False)
