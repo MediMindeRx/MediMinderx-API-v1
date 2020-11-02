@@ -1,0 +1,19 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - MediMindeRx</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>MediMindeRx</h1>
+  <ul>
+    <li></li>
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+    <h1>Welcome to MediMindeRx-API!</h1>
+  </header>
+  <div class="Information">
+    <p>This is the backend application supplying endpoints for MediMindeRx.</p>
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time. To access our endpoints, please refer to the following docs.</p>
+  </div>
+</section>
