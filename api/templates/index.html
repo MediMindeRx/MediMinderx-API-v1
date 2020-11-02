@@ -1,1 +1,26 @@
-<a href="{{ link }}">Login</a> to get your JWT
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} - MediMindeRx</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+
+  <body>
+    <nav>
+      <h1>MediMindeRx</h1>
+      <ul>
+        <li></li>
+      </ul>
+    </nav>
+    <section class="content">
+      <header>
+        {% block header %}{% endblock %}
+        <h1>Welcome to MediMindeRx-API!</h1>
+      </header>
+      <div class="Information">
+        <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
+        <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to the following docs.</p>
+      </div>
+    </section>
+  </body>
+</html>

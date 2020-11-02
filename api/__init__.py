@@ -80,7 +80,7 @@ def create_app(config_name='default'):
 
     @app.route('/api/v1/')
     def welcome():
-        return render_template('welcome.html')
+        return render_template('index.html')
 
     from api.resources.users import UsersResource, UserResource
     from api.resources.locations import LocationsResource
