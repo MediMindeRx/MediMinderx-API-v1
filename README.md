@@ -3,7 +3,7 @@
 </p>
 
 ## Abstract
-Never forget your medical supplies again! MediMindeRx is an application designed to help users create reminders for their medical supplies based off time or geolocation.
+Never forget your medical supplies again! MediMindeRx is an application designed to help users create reminders for their medical supplies based on time or geolocation.
 
 The MediMinderx-API-v1 is the backend application used by all of MediMinderx's applications. The application builds out RESTful API endpoints with full CRUD functionality for users and their reminders.
 
