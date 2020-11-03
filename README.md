@@ -5,7 +5,7 @@
 
 # MediMindeRx API
   
-![logo](./assets/logo.png)</br>
+![logo](https://imgur.com/olxejeK)</br>
 
 * Jordan Shryock
   * [Github](https://github.com/jordy1611) 
