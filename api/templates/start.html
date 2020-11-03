@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles4.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles6.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
@@ -24,8 +24,60 @@
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
   </section>
   <section className="starting-info">
-    <p>Starting Info</p>
-    <p>TEST TEST TEST</p>
+    <h2>Setup</h2>
+    <p>
+      Follow the steps below to get this database up and running on your local environment
+    </p>
+    <h4>Prerequisites</h4>
+    <p>
+      1. PostgreSQL installed </br>
+      Homebrew Install: https://formulae.brew.sh/formula/postgresql </br>
+      Browser Install: https://www.postgresql.org/download/ </br></br>
+
+      2. Postico Installed </br>
+      Homebrew Install: https://formulae.brew.sh/cask/postico </br>
+      Browser Install: https://eggerapps.at/postico/ </br></br>
+
+      3. Python3 Installed </br>
+      Homebrew Install: https://formulae.brew.sh/formula/python@3.8 </br>
+      Browser Install: https://www.python.org/downloads/ </br></br>
+    </p>
+    <h4>Installation</h4>
+    <p>
+      1. Clone down this repo
+      2. git clone git@github.com:MediMindeRx/MediMindeRx-API-v1.git
+      3. cd into directory MediMindeRx-API-v1
+    </p></br>
+    <h4>Initialize database for first time with</h4>
+    <p>
+      1. python3 -m venv env </br>
+      2. source env/bin/activate </br>
+      3. pip3 install -r requirements.txt </br>
+      4. createdb mediminderx </br>
+      5. export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx </br>
+      a. python migrate.py db init (this creates a db, so make sure you don’t have one already in postico) </br>
+      b. python migrate.py db migrate </br>
+      c. python migrate.py db upgrade </br>
+      d. python run.py to start the server
+    </p></br>
+
+    <h4>How to run test suite</h4>
+    <p>
+      1. createdb mediminderx_test </br>
+      2. export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx_test</br>
+      a. python migrate.py db upgrade</br>
+      b. pytest
+    </p></br>
+
+    <h4>Tech Stack</h4>
+    <p>
+      - Python3</br>
+      - Flask</br>
+      - PostgreSQL</br>
+      - Postico</br>
+      - Testing Software</br>
+      - Testing Software</br>
+    </p>
   </section>
 </body>
 
