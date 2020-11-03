@@ -17,7 +17,7 @@ jobs:
       - image: circleci/python:3.7.3-stretch-browsers
         environment:
           FLASK_CONFIG: testing
-          TEST_DATABASE_URL: postgresql://postgres@localhost/mediminderx_test?sslmode=disable
+          DATABASE_URL: postgresql://postgres@localhost/mediminderx_test?sslmode=disable
       - image: circleci/postgres:9.6.5-alpine-ram
         environment:
           POSTGRES_USER: postgres
@@ -25,17 +25,6 @@ jobs:
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
-#      - run:
-#          name: Download Selenium
-#          command: |
-#            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-#      - run:
-#          name: Start Selenium
-#          command: |
-#            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-#          background: true
-#      - restore_cache:
-#          key: deps2-{{ checksum "requirements/dev.txt" }}
       - run:
           command: |
             python3 -m venv venv
@@ -49,14 +38,3 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py db upgrade
-#      - run:
-#          name: Install Python dependecies in a venv environment
-#          command: |
-#            python3 -m venv venv
-#            . venv/bin/activate
-#            pip install -r requirements.txt
-#      - run:
-#          name: Run python tests
-#          command: |
-#            python manage.py db upgrade
-#            pytest
