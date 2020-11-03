@@ -35,11 +35,8 @@ jobs:
           paths:
             - 'venv'
       - run:
+          name: Run migration and tests
           command: |
             . venv/bin/activate
             python manage.py db upgrade
             pytest
-#      - run:
-#          name: Run tests
-#          command: |
-#            py.test
