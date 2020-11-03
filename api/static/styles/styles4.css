@@ -1,0 +1,48 @@
+body, html {
+    margin: 0;
+    width: 100%;
+};
+
+header {
+    font-size: 1.6em;
+    text-align: center;
+    align-self: center;
+};
+
+.basic-information {
+    font-size: 1.4em;
+    text-align: center;
+    align-self: center;
+};
+
+.nav-buttons {
+    padding: .5em;
+    text-align: center;
+    align-self: center;
+};
+
+.start-button,
+.users-button,
+.reminders-button,
+.schedules-button,
+.locations-button {
+    font-size: 1.2em;
+    height: 2em;
+    margin: 1em 2em;
+};
+
+.users-info,
+.locations-info,
+.reminders-info,
+.schedules-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid black .5em;
+};
+
+.fetch-info {
+    margin: 4em 0;
+  border: 
+    background-color: green;
+};

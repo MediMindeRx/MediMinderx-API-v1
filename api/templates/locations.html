@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles4.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
@@ -14,9 +14,10 @@
     <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
     <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
       the following docs.</p>
+    <p>Choose a datatype</p>
   </section>
   <section className="nav-buttons">
-    <button onclick="window.location.href='/api/v1'" id="start-button">Get Started!</button>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
     <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
     <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
@@ -24,34 +25,37 @@
   </section>
   <section className="locations-info">
     <section className="fetch-info">
-      <p className="action">Post A New Location</p>
-      <p className="method">Method: POST</p>
-      <p className="url">https://mediminderx-api.herokuapp.com/api/v1/users/1/locations</p>
-      <p className="body">Body: {
-        "reminder_id": "5",
-        "location_name": "Home",
-        "latitude": "38.8951",
-        "longitude": "-77.0364",
-        "address": "123 Address Lane"
-        }</p>
-      <p className="response">Response:
-        {
-        "data": {
-        "type": "location",
-        "id": 5,
-        "attributes": {
-        "location_name": "Home",
-        "longitude": "-77.0364",
-        "creation_date": "2020-10-26T20:56:33.014708",
-        "latitude": "38.8951",
-        "address": "123 Address Lane"
-        }
-        }
-        }
+      <h2 className="action">Post A New Location</h2>
+      <p className="method">
+      <h4>Method:</h4> POST</p>
+      <p className="url">
+      <h4>URL:</h4>https://mediminderx-api.herokuapp.com/api/v1/users/1/locations</p>
+      <p className="body">
+      <h4>Body:</h4> {
+      "reminder_id": "5",
+      "location_name": "Home",
+      "latitude": "38.8951",
+      "longitude": "-77.0364",
+      "address": "123 Address Lane"
+      }</p>
+      <p className="response">
+      <h4>Response:</h4>
+      {
+      "data": {
+      "type": "location",
+      "id": 5,
+      "attributes": {
+      "location_name": "Home",
+      "longitude": "-77.0364",
+      "creation_date": "2020-10-26T20:56:33.014708",
+      "latitude": "38.8951",
+      "address": "123 Address Lane"
+      }
+      }
+      }
       </p>
     </section>
   </section>
-  <script src="{{ url_for('static',filename='src/index.js') }}"></script>
 </body>
 
 </html>

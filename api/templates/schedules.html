@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles4.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
@@ -14,9 +14,10 @@
     <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
     <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
       the following docs.</p>
+    <p>Choose a datatype</p>
   </section>
   <section className="nav-buttons">
-    <button onclick="window.location.href='/api/v1'" id="start-button">Get Started!</button>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
     <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
     <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
@@ -26,7 +27,7 @@
     <section className="fetch-info">
       <p className="action">Post A New Schedule</p>
       <p className="method">Method: POST</p>
-      <p className="url">https://mediminderx-api.herokuapp.com/api/v1/schedules</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/schedules</p>
       <p className="body">Body: {
         "reminder_id": "1",
         "schedule_name": "Soccer reminder",
@@ -53,7 +54,6 @@
       </p>
     </section>
   </section>
-  <script src="{{ url_for('static',filename='src/index.js') }}"></script>
 </body>
 
 </html>
