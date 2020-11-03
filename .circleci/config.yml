@@ -38,3 +38,7 @@ jobs:
           command: |
             . venv/bin/activate
             python manage.py db upgrade
+      - run:
+          name: Run tests
+          command: |
+            pytest
