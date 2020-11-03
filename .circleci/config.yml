@@ -26,14 +26,14 @@ jobs:
     steps:
       - checkout
       - run:
-        command: |
-          python3 -m venv venv
-          . venv/bin/activate
-          pip install -r requirements.txt
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
       - save_cache:
-        key: deps2-{{ checksum "requirements.txt" }}
-        paths:
-          - 'venv'
+          key: deps2-{{ checksum "requirements.txt" }}
+          paths:
+            - 'venv'
       - run:
           name: Run migration and tests
           command: |
