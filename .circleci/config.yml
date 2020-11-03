@@ -26,6 +26,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create Database
+          command: |
+            psql --version
+            psql -c 'create database yourdatabase_test;' -U postgres
+      - run:
           name: Install Python dependecies in a venv environment
           command: |
             python3 -m venv venv
