@@ -1,4 +1,3 @@
-# MediMindeRx API v1
 <p align="center">
   <img src="https://i.imgur.com/olxejeK.png">
 </p>
