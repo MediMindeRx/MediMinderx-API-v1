@@ -10,6 +10,10 @@ header {
     align-self: center;
 };
 
+div {
+    border: solid black 5px;
+}
+
 .basic-information {
     font-size: 1.4em;
     text-align: center;
