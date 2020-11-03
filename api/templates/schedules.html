@@ -22,8 +22,36 @@
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
   </section>
-  <section className="schedule-info">
-    <p>Schedule Info</p>
+  <section className="schedules-info">
+    <section className="fetch-info">
+      <p className="action">Post A New Schedule</p>
+      <p className="method">Method: POST</p>
+      <p className="url">https://mediminderx-api.herokuapp.com/api/v1/schedules</p>
+      <p className="body">Body: {
+        "reminder_id": "1",
+        "schedule_name": "Soccer reminder",
+        "unix_time": "1603767106",
+        "repeating": "false",
+        "days": "Tuesday, Wednesday",
+        "times": "10:30"
+        }</p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "schedule",
+        "attributes": {
+        "id": 6,
+        "days": "Tuesday, Wednesday",
+        "unix_time": "1603767106",
+        "schedule_name": "Schedule 1",
+        "repeating": false
+        "creation_date": "2020-10-26T20:54:48.401702",
+        "times": "10:30"
+        }
+        }
+        }
+      </p>
+    </section>
   </section>
   <script src="{{ url_for('static',filename='src/index.js') }}"></script>
 </body>

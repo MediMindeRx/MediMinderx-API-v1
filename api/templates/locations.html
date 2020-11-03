@@ -22,8 +22,34 @@
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
   </section>
-  <section className="location-info">
-    <p>Location Info</p>
+  <section className="locations-info">
+    <section className="fetch-info">
+      <p className="action">Post A New Location</p>
+      <p className="method">Method: POST</p>
+      <p className="url">https://mediminderx-api.herokuapp.com/api/v1/users/1/locations</p>
+      <p className="body">Body: {
+        "reminder_id": "5",
+        "location_name": "Home",
+        "latitude": "38.8951",
+        "longitude": "-77.0364",
+        "address": "123 Address Lane"
+        }</p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "location",
+        "id": 5,
+        "attributes": {
+        "location_name": "Home",
+        "longitude": "-77.0364",
+        "creation_date": "2020-10-26T20:56:33.014708",
+        "latitude": "38.8951",
+        "address": "123 Address Lane"
+        }
+        }
+        }
+      </p>
+    </section>
   </section>
   <script src="{{ url_for('static',filename='src/index.js') }}"></script>
 </body>
