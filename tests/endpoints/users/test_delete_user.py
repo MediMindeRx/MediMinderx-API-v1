@@ -51,10 +51,10 @@ class DeleteUserTest(unittest.TestCase):
     #         content_type='application/json'
     #     )
     #     self.assertEqual(404, response.status_code)
-
-        data = json.loads(response.data.decode('utf-8'))
-        assert_payload_field_type_value(self, data, 'error', int, 404)
-        assert_payload_field_type_value(self, data, 'success', bool, False)
-        assert_payload_field_type_value(
-            self, data, 'message', str, 'resource not found'
-        )
+        #
+        # data = json.loads(response.data.decode('utf-8'))
+        # assert_payload_field_type_value(self, data, 'error', int, 404)
+        # assert_payload_field_type_value(self, data, 'success', bool, False)
+        # assert_payload_field_type_value(
+        #     self, data, 'message', str, 'resource not found'
+        # )

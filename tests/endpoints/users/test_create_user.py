@@ -19,7 +19,7 @@ class CreateUserTest(unittest.TestCase):
         self.payload = {
             'name': ' new_name '
         }
-
+    #
     # def tearDown(self):
     #     db.session.remove()
     #     db_drop_everything(db)

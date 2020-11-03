@@ -25,7 +25,7 @@ class PatchuserTest(unittest.TestCase):
             'id': f'{self.user_1.id}',
             'name': ' new_name '
         }
-
+    # 
     # def tearDown(self):
     #     db.session.remove()
     #     db_drop_everything(db)

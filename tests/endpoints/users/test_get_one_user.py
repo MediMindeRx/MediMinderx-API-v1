@@ -18,6 +18,11 @@ class GetUserTest(unittest.TestCase):
 
         self.user_1 = User(name='zzz 1')
         self.user_1.insert()
+    #
+    # def tearDown(self):
+    #     db.session.remove()
+    #     db_drop_everything(db)
+    #     self.app_context.pop()
 
     def test_happypath_get_a_user(self):
         response = self.client.get(
@@ -44,8 +49,3 @@ class GetUserTest(unittest.TestCase):
         assert_payload_field_type_value(
             self, data, 'message', str, 'resource not found'
         )
-
-    # def tearDown(self):
-    #     db.session.remove()
-    #     db_drop_everything(db)
-    #     self.app_context.pop()
