@@ -1,9 +1,7 @@
-![logo](https://i.imgur.com/olxejeK.png)
-
-
-
 # MediMindeRx API v1
-
+<p align="center">
+  <img src="https://i.imgur.com/olxejeK.png">
+</p>
 
 ## Abstract
 Never forget your medical supplies again! MediMindeRx is an application designed to help users create reminders for their medical supplies based off time or geolocation.
