@@ -1,23 +1,6 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
-# MediMindeRx API
-  
 ![logo](https://i.imgur.com/olxejeK.png)
 
-* Jordan Shryock
-  * [Github](https://github.com/jordy1611) 
-  * [LinkedIn](https://www.linkedin.com/in/jordan-shryock-6a48b9113/)
-
-* Kathy Bui
-  * [Github](https://github.com/kathybui732) 
-  * [LinkedIn](https://www.linkedin.com/kathytbui/)
-
-* Kwibe Merci
-  * [Github](https://github.com/jkwibe) 
-  * [LinkedIn](https://www.linkedin.com/kwibe-merci/)
+# MediMindeRx API
 
 
 ## Abstract
@@ -26,6 +9,7 @@ Never forget your medical supplies again! This mobile app serves to track remind
 The MediMinderx_BE is the backend application used by all of MediMinderx's applications. The application builds out RESTful API endpoints for full crud functionality for users and their reminders.
 
 The most difficult and rewarding thing about building this application was picking up a brand new tech stack. We were able to learn python and develop this application in flask in a matter of 14 days. 
+
 
 ## Set up 
 Follow the steps below to get this database up and running on your local environment:
@@ -42,7 +26,6 @@ Follow the steps below to get this database up and running on your local environ
 * Python3 Installed
   * [Homebrew Install](https://formulae.brew.sh/formula/python@3.8)
   * [Browser Install](https://www.python.org/downloads/)
-
 
 ### Installation
 * Clone down this repo
@@ -79,6 +62,21 @@ Follow the steps below to get this database up and running on your local environ
 - Option to send texts to family members via Twilio api
 - Users can find all the nearest emergency centers (i.e. hostpitals, police stations)
 - Users can get notifications based off heart rate or step count sourced off health application such as thorugh fitbit or apple's health app
+
+
+## Contributors
+
+* Jordan Shryock
+  * [Github](https://github.com/jordy1611) 
+  * [LinkedIn](https://www.linkedin.com/in/jordan-shryock-6a48b9113/)
+
+* Kathy Bui
+  * [Github](https://github.com/kathybui732) 
+  * [LinkedIn](https://www.linkedin.com/kathytbui/)
+
+* Kwibe Merci
+  * [Github](https://github.com/jkwibe) 
+  * [LinkedIn](https://www.linkedin.com/kwibe-merci/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
