@@ -1,12 +1,14 @@
 ![logo](https://i.imgur.com/olxejeK.png)
 
-# MediMindeRx API
+
+
+# MediMindeRx API v1
 
 
 ## Abstract
-Never forget your medical supplies again! This mobile app serves to track reminders for medical supplies and notify the user at a given time. 
+Never forget your medical supplies again! MediMindeRx is an application designed to help users create reminders for their medical supplies based off time or geolocation.
 
-The MediMinderx_BE is the backend application used by all of MediMinderx's applications. The application builds out RESTful API endpoints for full crud functionality for users and their reminders.
+The MediMinderx-API-v1 is the backend application used by all of MediMinderx's applications. The application builds out RESTful API endpoints with full CRUD functionality for users and their reminders.
 
 The most difficult and rewarding thing about building this application was picking up a brand new tech stack. We were able to learn python and develop this application in flask in a matter of 14 days. 
 
