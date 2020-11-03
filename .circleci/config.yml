@@ -26,18 +26,37 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Create Database
+          name: Download Selenium
           command: |
-            psql --version
-            psql -c 'create database yourdatabase_test;' -U postgres
+            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
-          name: Install Python dependecies in a venv environment
+          name: Start Selenium
+          command: |
+            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
+      - restore_cache:
+          key: deps2-{{ checksum "requirements/dev.txt" }}
+      - run:
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
+      - save_cache:
+          key: deps2-{{ checksum "requirements.txt" }}
+          paths:
+            - 'venv'
       - run:
-          name: Run python tests
           command: |
-            python manage.py db upgrade
-            pytest
+            . venv/bin/activate
+            python manage.py test
+#      - run:
+#          name: Install Python dependecies in a venv environment
+#          command: |
+#            python3 -m venv venv
+#            . venv/bin/activate
+#            pip install -r requirements.txt
+#      - run:
+#          name: Run python tests
+#          command: |
+#            python manage.py db upgrade
+#            pytest
