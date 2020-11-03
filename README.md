@@ -46,9 +46,8 @@ Follow the steps below to get this database up and running on your local environ
 
 ### Installation
 * Clone down this repo
-  * `git clone git@github.com:MediMindeRx/MediMindeRx-API-v1.git`
-
-* CD into directory
+  1. `git clone git@github.com:MediMindeRx/MediMindeRx-API-v1.git`
+  1. `cd` into directory `MediMindeRx-API-v1`
 
 * Initialize database for first time with
   1. `python3 -m venv env`
