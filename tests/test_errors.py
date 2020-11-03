@@ -13,10 +13,10 @@ class ErrorsTest(unittest.TestCase):
         db.create_all()
         self.client = self.app.test_client()
 
-    def tearDown(self):
-        db.session.remove()
-        db_drop_everything(db)
-        self.app_context.pop()
+    # def tearDown(self):
+    #     db.session.remove()
+    #     db_drop_everything(db)
+    #     self.app_context.pop()
 
     def test_404_error(self):
         response = self.client.get('/lkjasdkj')
