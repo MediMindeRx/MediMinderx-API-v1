@@ -1,0 +1,31 @@
+<!doctype html lang="en-US">
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <title>MediMindeRx_API</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to MediMindeRx-API!</h1>
+  </header>
+  <section class="basic-information">
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
+    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
+      the following docs.</p>
+  </section>
+  <section className="nav-buttons">
+    <button onclick="window.location.href='/api/v1'" id="start-button">Get Started!</button>
+    <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
+    <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
+    <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
+    <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+  </section>
+  <section className="starting-info">
+    <p>Starting Info</p>
+  </section>
+  <script src="{{ url_for('static',filename='src/index.js') }}"></script>
+</body>
+
+</html>
