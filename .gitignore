@@ -7,4 +7,6 @@ coverage*
 .DS_Store
 .env
 /env
+.coveragerc
 /.coveragerc
+

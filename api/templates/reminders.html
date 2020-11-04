@@ -1,0 +1,159 @@
+<!doctype html lang="en-US">
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <title>MediMindeRx_API</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to MediMindeRx-API!</h1>
+  </header>
+  <section class="basic-information">
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
+    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
+      the following docs.</p>
+    <p>Choose a datatype</p>
+  </section>
+  <section className="nav-buttons">
+    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+    <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
+    <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
+    <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
+    <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+  </section>
+  <section className="reminders-info">
+    <section className="fetch-info">
+      <h2 className="action">Post A New Reminder</h2>
+      <p className="method">Method: POST</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/reminders</p>
+      <p className="body">Body: {
+        "user_id": "1",
+        "title": "Soccer Practice",
+        "supplies": "inhaler",
+        "show_supplies": "false"
+        }</p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "reminders",
+        "id": 3,
+        "attributes": {
+        "user_id": 1,
+        "location_reminder": null,
+        "creation_date": "2020-10-26T20:17:36.207302",
+        "schedule_reminder": null,
+        "supplies": "inhaler",
+        "show_supplies": false,
+        "title": "Soccer Practice"
+        }
+        }
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Get A Users Reminders</h2>
+      <p className="method">Method: GET</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users/:userID/reminders</p>
+      <p className="body">No Body</p>
+      <p className="response">Response:
+        {
+        "data": [
+        {
+        "type": "reminders",
+        "id": 4,
+        "attributes": {
+        "supplies": "inhaler",
+        "title": "Soccer Practice",
+        "location_reminder": null,
+        "schedule_reminder": {
+        "data": {
+        "type": "schedule",
+        "id": 6,
+        "attributes": {
+        "days": "Tuesday, Wednesday",
+        "unix_time": "1603767106",
+        "creation_date": "2020-10-26T20:54:48.401702",
+        "repeating": false
+        "times": "10:30"
+        }
+        }
+        },
+        "creation_date": "2020-10-26T20:46:35.589353",
+        "user_id": 1,
+        "show_supplies": false
+        }
+        },
+        {
+        "type": "reminders",
+        "id": 5,
+        "attributes": {
+        "supplies": "Knee Brace",
+        "title": "Hockey Game",
+        "location_reminder": {
+        "data": {
+        "type": "location",
+        "id": 5,
+        "attributes": {
+        "location_name": "Home",
+        "longitude": "-77.0364",
+        "address": "123 Address Lane"
+        "creation_date": "2020-10-26T20:56:33.014708",
+        "latitude": "38.8951"
+        }
+        }
+        },
+        "schedule_reminder": null,
+        "creation_date": "2020-10-26T20:47:04.818274",
+        "user_id": 1,
+        "show_supplies": false
+        }
+        }
+        ]
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Edit A Reminder</h2>
+      <p className="method">Method: PUT</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/reminders</p>
+      <p className="body">Body: {
+        "id": "1",
+        "title": "Dance Practice",
+        "supplies": "inhaler",
+        "show_supplies": "false"
+        }</p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "reminders",
+        "attributes": {
+        "supplies": "inhaler",
+        "user_id": 1,
+        "show_supplies": false,
+        "location_reminder": null,
+        "title": "Dance Practice",
+        "creation_date": "2020-10-26T20:17:36.207302",
+        "schedule_reminder": null
+        },
+        "id": 3
+        }
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Delete A Reminder</h2>
+      <p className="method">Method: DELETE</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/reminders</p>
+      <p className="body">Body: { "id": "3" }</p>
+      <p className="response">Response:
+        {
+        "message": "Reminder successfully deleted"
+        }
+      </p>
+    </section>
+  </section>
+</body>
+
+</html>

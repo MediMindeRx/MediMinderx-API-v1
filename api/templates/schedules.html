@@ -1,0 +1,59 @@
+<!doctype html lang="en-US">
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <title>MediMindeRx_API</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to MediMindeRx-API!</h1>
+  </header>
+  <section class="basic-information">
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
+    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
+      the following docs.</p>
+    <p>Choose a datatype</p>
+  </section>
+  <section className="nav-buttons">
+    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+    <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
+    <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
+    <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
+    <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+  </section>
+  <section className="schedules-info">
+    <section className="fetch-info">
+      <h2 className="action">Post A New Schedule</h2>
+      <p className="method">Method: POST</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/schedules</p>
+      <p className="body">Body: {
+        "reminder_id": "1",
+        "schedule_name": "Soccer reminder",
+        "unix_time": "1603767106",
+        "repeating": "false",
+        "days": "Tuesday, Wednesday",
+        "times": "10:30"
+        }</p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "schedule",
+        "attributes": {
+        "id": 6,
+        "days": "Tuesday, Wednesday",
+        "unix_time": "1603767106",
+        "schedule_name": "Schedule 1",
+        "repeating": false
+        "creation_date": "2020-10-26T20:54:48.401702",
+        "times": "10:30"
+        }
+        }
+        }
+      </p>
+    </section>
+  </section>
+</body>
+
+</html>

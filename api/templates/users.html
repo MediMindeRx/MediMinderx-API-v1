@@ -1,0 +1,131 @@
+<!doctype html lang="en-US">
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+  <title>MediMindeRx_API</title>
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to MediMindeRx-API!</h1>
+  </header>
+  <section class="basic-information">
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
+    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
+      the following docs.</p>
+    <p>Choose a datatype</p>
+  </section>
+  <section className="nav-buttons">
+    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+    <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
+    <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
+    <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
+    <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+  </section>
+  <section className="users-info">
+    <section className="fetch-info">
+      <h2 className="action">Post A New User</h2>
+      <p className="method">Method: POST</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
+      <p className="body">Body: {"name": "John"}</p>
+      <p className="response">Response:
+        {
+        {
+        "data": {
+        "type": "users",
+        "id": 1,
+        "attributes": {
+        "name": "John"
+        }
+        }
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Get A User</h2>
+      <p className="method">Method: GET</p>
+      <p className="url">https://mediminderx-api.herokuapp.com/api/v1/users/:id</p>
+      <p className="body">No Body</p>
+      <p className="response">Response:
+        {
+        {
+        "data": [
+        {
+        "type": "users",
+        "id": 1,
+        "attributes": {
+        "name": "John"
+        }
+        }
+        ]
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Get All Users</h2>
+      <p className="method">Method: GET</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
+      <p className="body">No Body</p>
+      <p className="response">Response:
+        {
+        "data": [
+        {
+        "type": "users",
+        "id": 1,
+        "attributes": {
+        "name": "John"
+        }
+        },
+        {
+        "type": "users",
+        "id": 2,
+        "attributes": {
+        "name": "Jane"
+        }
+        }
+        ]
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Edit A User</h2>
+      <p className="method">Method: PUT</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
+      <p className="body">Body:
+        {
+        "name": "Jake",
+        "id": "1"
+        }
+      </p>
+      <p className="response">Response:
+        {
+        "data": {
+        "type": "users",
+        "attributes": {
+        "name": "Jake"
+        },
+        "id": 1
+        }
+        }
+      </p>
+    </section>
+    <section className="fetch-info">
+      <h2 className="action">Delete A User</h2>
+      <p className="method">Method: DELETE</p>
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
+      <p className="body">Body:
+        {
+        "id": "1"
+        }
+      </p>
+      <p className="response">Response:
+        {
+        "message": "User has been successfully deleted"
+        }
+      </p>
+    </section>
+  </section>
+</body>
+
+</html>

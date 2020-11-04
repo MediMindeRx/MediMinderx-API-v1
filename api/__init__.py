@@ -1,7 +1,7 @@
 from flask_cors import CORS
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from werkzeug.exceptions import HTTPException
 from config import config
 
@@ -77,6 +77,26 @@ def create_app(config_name='default'):
             "error": 404,
             "message": "resource not found"
         }), 404
+
+    @app.route('/api/v1/')
+    def display_start_doc():
+        return render_template('start.html')
+
+    @app.route('/api/v1/users-doc/')
+    def display_users_doc():
+        return render_template('users.html')
+
+    @app.route('/api/v1/reminders-doc/')
+    def display_reminders_doc():
+        return render_template('reminders.html')
+
+    @app.route('/api/v1/schedules-doc/')
+    def display_schedules_doc():
+        return render_template('schedules.html')
+
+    @app.route('/api/v1/locations-doc/')
+    def display_locations_doc():
+        return render_template('locations.html')
 
     from api.resources.users import UsersResource, UserResource
     from api.resources.locations import LocationsResource
