@@ -7,18 +7,21 @@ Never forget your medical supplies again! MediMindeRx is an application designed
 
 The MediMinderx-API-v1 is the backend application used by all of MediMinderx's applications. The application builds out RESTful API endpoints with full CRUD functionality for users and their reminders.
 
-The most difficult and rewarding thing about building this application was picking up a brand new tech stack. We were able to learn python and develop this application in flask in a matter of 14 days. 
+The most difficult and rewarding thing about building this application was picking up a brand new tech stack. We were able to learn python and develop this application in flask in a matter of 14 days.
+
+## Deployment
+Check out our deployed site! [MediMindeRx](https://mediminderx-api.herokuapp.com/api/v1/)
 
 
-## Set up 
+## Set up
 Follow the steps below to get this database up and running on your local environment:
 
 ### Prerequisites
-* PostgreSQL installed 
+* PostgreSQL installed
   * [Homebrew Install](https://formulae.brew.sh/formula/postgresql)
   * [Browser Install](https://www.postgresql.org/download/)
 
-* Postico Installed 
+* Postico Installed
   * [Homebrew Install](https://formulae.brew.sh/cask/postico)
   * [Browser Install](https://eggerapps.at/postico/)
 
@@ -41,7 +44,7 @@ Follow the steps below to get this database up and running on your local environ
   1. `python migrate.py db migrate`
   1. `python migrate.py db upgrade`
   1. `python run.py` to start the server
-  
+
 * How to run test suite
   1. `createdb mediminderx_test`
   1. `export DATABASE_URL==postgresql://<YOUR USERNAME>:<YOUR PASSWORD>@localhost:5432/mediminderx_test`
@@ -49,7 +52,7 @@ Follow the steps below to get this database up and running on your local environ
   1. `pytest`
 
 
-## Tech Stack 
+## Tech Stack
 - Python3
 - Flask
 - PostgreSQL
@@ -66,15 +69,15 @@ Follow the steps below to get this database up and running on your local environ
 ## Contributors
 
 * Jordan Shryock
-  * [Github](https://github.com/jordy1611) 
+  * [Github](https://github.com/jordy1611)
   * [LinkedIn](https://www.linkedin.com/in/jordan-shryock-6a48b9113/)
 
 * Kathy Bui
-  * [Github](https://github.com/kathybui732) 
+  * [Github](https://github.com/kathybui732)
   * [LinkedIn](https://www.linkedin.com/kathytbui/)
 
 * Kwibe Merci
-  * [Github](https://github.com/jkwibe) 
+  * [Github](https://github.com/jkwibe)
   * [LinkedIn](https://www.linkedin.com/kwibe-merci/)
 
 <!-- MARKDOWN LINKS & IMAGES -->
