@@ -43,7 +43,7 @@ class ExtendedAPI(Api):
 
 def create_app(config_name='default'):
     # set up Flask here
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder='static')
 
     # use our 'config_name' to set up our config.py settings
     app.config.from_object(config[config_name])
@@ -78,6 +78,10 @@ def create_app(config_name='default'):
             "message": "resource not found"
         }), 404
 
+    @app.route('/')
+    def reroute_root():
+        return render_template('start.html')
+
     @app.route('/api/v1/')
     def display_start_doc():
         return render_template('start.html')
@@ -97,6 +101,10 @@ def create_app(config_name='default'):
     @app.route('/api/v1/locations-doc/')
     def display_locations_doc():
         return render_template('locations.html')
+
+    @app.route('/api/v1/github-repo/')
+    def display_github_doc():
+        return render_template('github_repo.html')
 
     from api.resources.users import UsersResource, UserResource
     from api.resources.locations import LocationsResource

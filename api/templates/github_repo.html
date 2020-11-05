@@ -1,0 +1,90 @@
+<!doctype html lang="en-US">
+<html>
+
+<head>
+  <title>MediMindeRx_API</title>
+</head>
+
+<body style="font-family:verdana;">
+  <section class="basic-information" style="text-align: center;">
+    <h1>Welcome to <span style="color:#60B0F4;">MediMinde</span><span style="color:#E82C1E;">Rx</span><span style="color:#60B0F4;">-API</span>!</h1>
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time. <br> This is the backend application supplying endpoints for MediMindeRx.</p><br>
+    <p>To access our endpoints, please refer to the following endpoint docs:</p>
+  </section>
+  <section className="nav-buttons" style="text-align: center;">
+    <p>The base URL is <b>https://mediminderx-api.herokuapp.com</b></p>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Demo Video</button>
+    <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
+    <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
+    <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
+    <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+    <button onclick="window.location.href='/api/v1/github-repo'" id="repo-button">GitHub Repo</button>
+  </section>
+  <br>
+  <br>
+  <section className="starting-info">
+  <h2>Checkout our GitHub Repo! <a href="https://github.com/MediMindeRx/MediMinderx-API-v1">MediMindeRx</a></h2>
+  <h2>Repo Setup</h2>
+  <p>
+    Follow the steps below to get this database up and running on your local environment
+  </p>
+  <h4>Prerequisites</h4>
+  <p>
+    1. PostgreSQL installed </br>
+    Homebrew Install: https://formulae.brew.sh/formula/postgresql </br>
+    Browser Install: https://www.postgresql.org/download/ </br></br>
+
+    2. Postico Installed </br>
+    Homebrew Install: https://formulae.brew.sh/cask/postico </br>
+    Browser Install: https://eggerapps.at/postico/ </br></br>
+
+    3. Python3 Installed </br>
+    Homebrew Install: https://formulae.brew.sh/formula/python@3.8 </br>
+    Browser Install: https://www.python.org/downloads/ </br></br>
+  </p>
+  <h4>Installation</h4>
+  <p>
+    <ol>
+      <li>Clone down this repo</li>
+      <li>git clone git@github.com:MediMindeRx/MediMindeRx-API-v1.git</li>
+      <li>cd into directory MediMindeRx-API-v1</li>
+    </ol>
+  </p>
+
+  <h4>Initialize database for first time with</h4>
+    <ol>
+      <li>python3 -m venv env</li>
+      <li>source env/bin/activate</li>
+      <li>pip3 install -r requirements.txt</li>
+      <li>createdb mediminderx</li>
+      <li>export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx</li>
+      <li>python migrate.py db init (this creates a db, so make sure you don’t have one already in postico)</li>
+      <li>python migrate.py db migrate</li>
+      <li>python migrate.py db upgrade</li>
+      <li>python run.py to start the server</li>
+    </ol>
+
+  <p>
+  <h4>How to run test suite</h4>
+    <ol>
+      <li>createdb mediminderx_test</li>
+      <li>export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx_test</li>
+        <ul>
+          <li>python migrate.py db upgrade</li>
+          <li>pytest</li>
+        </ul>
+    </ol>
+  </p>
+
+  <h4>Tech Stack</h4>
+  <ul>
+    <li>Python3</li>
+    <li>Flask</li>
+    <li>PostgreSQL</li>
+    <li>Postico</li>
+    <li>Testing Software</li>
+    <li>Testing Software</li>
+  </ul>
+</section>
+</body>
+</html>
