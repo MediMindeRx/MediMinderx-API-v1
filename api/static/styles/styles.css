@@ -1,54 +1,68 @@
 body, html {
-    margin: 0;
-    width: 100%;
-    text-align: center;
-};
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+;
 
 header {
-    font-size: 1.6em;
-    text-align: center;
-    align-self: center;
-};
+  font-size: 1.6em;
+  text-align: center;
+  align-self: center;
+}
+
+;
 
 div {
-    border: solid black 5px;
+  border: solid black 5px;
 }
 
 .basic-information {
-    font-size: 1.4em;
-    text-align: center;
-    align-self: center;
-};
+  font-size: 1.4em;
+  text-align: center;
+  align-self: center;
+}
+
+;
 
 .nav-buttons {
-    padding: .5em;
-    text-align: center;
-    align-self: center;
-};
+  padding: .5em;
+  text-align: center;
+  align-self: center;
+}
+
+;
 
 .start-button,
 .users-button,
 .reminders-button,
 .schedules-button,
 .locations-button {
-    font-size: 1.2em;
-    height: 2em;
-    margin: 1em 2em;
-};
+  font-size: 1.2em;
+  height: 2em;
+  margin: 1em 2em;
+}
+
+;
 
 .users-info,
 .locations-info,
 .reminders-info,
 .schedules-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: solid black .5em;
-};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: solid black .5em;
+}
+
+;
 
 .fetch-info {
-    text-align: left;
-    margin: 4em 0;
-    border: solid black 5px;
-    background-color: green;
-};
+  text-align: left;
+  margin: 4em 0;
+  border: solid black 5px;
+  background-color: green;
+}
+
+;

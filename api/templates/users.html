@@ -2,130 +2,188 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
-<body>
-  <header>
-    <h1>Welcome to MediMindeRx-API!</h1>
-  </header>
-  <section class="basic-information">
-    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
-    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
-      the following docs.</p>
-    <p>Choose a datatype</p>
+<body style="font-family:verdana;">
+  <section class="basic-information" style="text-align: center;">
+    <h1>Welcome to <span style="color:#60B0F4;">MediMinde</span><span style="color:#E82C1E;">Rx</span><span style="color:#60B0F4;">-API</span>!</h1>
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time. <br> This is the backend application supplying endpoints for MediMindeRx.</p><br>
+    <p>To access our endpoints, please refer to the following endpoint docs:</p>
   </section>
-  <section className="nav-buttons">
-    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+  <section className="nav-buttons" style="text-align: center;">
+    <p>The base URL is <b>https://mediminderx-api.herokuapp.com</b></p>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Demo Video</button>
     <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
     <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+    <button onclick="window.location.href='/api/v1/github-repo'" id="repo-button">GitHub Repo</button>
   </section>
-  <section className="users-info">
+  <br>
+  <br>
+  <section className="users-info" style="text-align:left;">
     <section className="fetch-info">
-      <h2 className="action">Post A New User</h2>
+      <h3 className="action" style="text-align-=:center;">Post A New User</h3>
       <p className="method">Method: POST</p>
       <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
-      <p className="body">Body: {"name": "John"}</p>
-      <p className="response">Response:
-        {
-        {
-        "data": {
-        "type": "users",
-        "id": 1,
-        "attributes": {
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:</p>
+          <pre>
+  {
+    "name": "John"
+  }</pre>
+        </section>
+        <section class="response">
+          <p>Response:<p>
+            <pre class="code" style="padding: 20px;">
+  {
+    "data": {
+      "type": "users",
+      "id": 1,
+      "attributes": {
         "name": "John"
-        }
-        }
-        }
-      </p>
+      }
+    }
+  }</pre>
+        </section>
+      </section>
     </section>
     <section className="fetch-info">
-      <h2 className="action">Get A User</h2>
+      <h3 className="action" style="text-align:center;">Get A User</h3>
       <p className="method">Method: GET</p>
       <p className="url">https://mediminderx-api.herokuapp.com/api/v1/users/:id</p>
-      <p className="body">No Body</p>
-      <p className="response">Response:
-        {
-        {
-        "data": [
-        {
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:<p>
+          <pre>No Body</pre>
+        </section>
+        <section class="response">
+          <p>Response:
+            <pre class="code" style="padding: 20px;">
+  {
+    "data": [
+      {
         "type": "users",
         "id": 1,
         "attributes": {
-        "name": "John"
+          "name": "John"
         }
-        }
-        ]
-        }
-      </p>
+      }
+    ]
+  }</pre>
+        </section>
+      </section>
     </section>
     <section className="fetch-info">
-      <h2 className="action">Get All Users</h2>
+      <h3 className="action" style="text-align:center;">Get All Users</h3>
       <p className="method">Method: GET</p>
       <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
-      <p className="body">No Body</p>
-      <p className="response">Response:
-        {
-        "data": [
-        {
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:<p>
+          <pre>No Body</pre>
+        </section>
+        <section class="response">
+          <p>Response:
+            <pre class="code" style="padding: 20px;">
+  {
+    "data": [
+      {
         "type": "users",
         "id": 1,
         "attributes": {
-        "name": "John"
+          "name": "John"
         }
-        },
+      },
         {
         "type": "users",
         "id": 2,
         "attributes": {
-        "name": "Jane"
+          "name": "Jane"
         }
-        }
-        ]
-        }
-      </p>
+      }
+    ]
+  }</pre>
+        </section>
+      </section>
     </section>
     <section className="fetch-info">
-      <h2 className="action">Edit A User</h2>
+      <h3 className="action" style="text-align=center">Edit A User</h3>
       <p className="method">Method: PUT</p>
       <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
-      <p className="body">Body:
-        {
-        "name": "Jake",
-        "id": "1"
-        }
-      </p>
-      <p className="response">Response:
-        {
-        "data": {
-        "type": "users",
-        "attributes": {
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:<p>
+          <pre>
+  {
+    "name": "Jake",
+    "id": "1"
+  }</pre>
+        </section>
+        <section class="response">
+          <p>Response:
+            <pre class="code" style="padding: 20px;">
+  {
+    "data": {
+      "type": "users",
+      "attributes": {
         "name": "Jake"
-        },
-        "id": 1
-        }
-        }
-      </p>
+      },
+      "id": 1
+    }
+  }</pre>
+        </section>
+      </section>
     </section>
     <section className="fetch-info">
-      <h2 className="action">Delete A User</h2>
+      <h3 className="action" style="text-align=center;">Delete A User</h3>
       <p className="method">Method: DELETE</p>
       <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users</p>
-      <p className="body">Body:
-        {
-        "id": "1"
-        }
-      </p>
-      <p className="response">Response:
-        {
-        "message": "User has been successfully deleted"
-        }
-      </p>
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:<p>
+          <pre>
+  {
+    "id": "1"
+  }</pre>
+        </section>
+        <section class="response">
+          <p>Response:
+            <pre class="code" style="padding: 20px;">
+  {
+    "message": "User has been successfully deleted"
+  }</pre>
     </section>
   </section>
 </body>
+
+<style type="text/css">
+  body {
+    margin: 0 auto;
+    width: 55%;
+  }
+
+  .request {
+    display: flex;
+    padding: 5px;
+    margin: auto;
+    background-color: #F0F8FF;
+  }
+
+  .response {
+    display: inline;
+    padding: 5px;
+    margin-left: 25px;
+    border-left: 10px solid white;
+  }
+
+  .request-body {
+    display: inline;
+    padding: 5px;
+  }
+</style>
+
 
 </html>

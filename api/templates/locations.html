@@ -2,58 +2,86 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
-<body>
-  <header>
-    <h1>Welcome to MediMindeRx-API!</h1>
-  </header>
-  <section class="basic-information">
-    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
-    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
-      the following docs.</p>
-    <p>Choose a datatype</p>
+<body style="font-family:verdana;">
+  <section class="basic-information" style="text-align: center;">
+    <h1>Welcome to <span style="color:#60B0F4;">MediMinde</span><span style="color:#E82C1E;">Rx</span><span style="color:#60B0F4;">-API</span>!</h1>
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time. <br> This is the backend application supplying endpoints for MediMindeRx.</p><br>
+    <p>To access our endpoints, please refer to the following endpoint docs:</p>
   </section>
-  <section className="nav-buttons">
-    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+  <section className="nav-buttons" style="text-align: center;">
+    <p>The base URL is <b>https://mediminderx-api.herokuapp.com</b></p>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Demo Video</button>
     <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
     <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+    <button onclick="window.location.href='/api/v1/github-repo'" id="repo-button">GitHub Repo</button>
   </section>
-  <section className="locations-info">
+  <br>
+  <br>
+  <section className="locations-info" style="text-align:left;">
     <section className="fetch-info">
-      <h2 className="action">Post A New Location</h2>
+      <h3 className="action" style="text-align:center;">Post A New Location</h3>
       <p className="method">Method: POST</p>
-      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/users/1/locations</p>
-      <p className="body">
-        Body: {
-        "reminder_id": "5",
-        "location_name": "Home",
-        "latitude": "38.8951",
-        "longitude": "-77.0364",
-        "address": "123 Address Lane"
-        }</p>
-      <p className="response">
-        Response:
-        {
-        "data": {
-        "type": "location",
-        "id": 5,
-        "attributes": {
+      <p className="url">URL: https://mediminderx-api.herokuapp.com/api/v1/locations</p>
+      <section class="request">
+        <section class="request-body">
+          <p class="body">Body:<pre>
+  {
+    "reminder_id": "5",
+    "location_name": "Home",
+    "latitude": "38.8951",
+    "longitude": "-77.0364",
+    "address": "123 Address Lane"
+  }</pre></p>
+        </section>
+        <section class="response">
+          <p>Response:
+            <pre class="code" style="padding: 20px;">
+  {
+    "data": {
+      "type": "location",
+      "id": 5,
+      "attributes": {
         "location_name": "Home",
         "longitude": "-77.0364",
         "creation_date": "2020-10-26T20:56:33.014708",
         "latitude": "38.8951",
         "address": "123 Address Lane"
-        }
-        }
-        }
-      </p>
+      }
+    }
+  }</pre></p>
+        </section>
+      </section>
     </section>
   </section>
 </body>
+  <style type="text/css">
+    body {
+      margin: 0 auto;
+      width: 55%;
+    }
 
+    .request {
+      display: flex;
+      padding: 5px;
+      margin: auto;
+      background-color: #F0F8FF;
+    }
+
+    .response {
+      display: inline;
+      padding: 5px;
+      margin-left: 25px;
+      border-left: 10px solid white;
+    }
+
+    .request-body {
+      display: inline;
+      padding: 5px;
+    }
+  </style>
 </html>

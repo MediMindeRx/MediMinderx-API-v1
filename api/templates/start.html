@@ -2,82 +2,33 @@
 <html>
 
 <head>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
   <title>MediMindeRx_API</title>
 </head>
 
-<body>
-  <header>
-    <h1>Welcome to MediMindeRx-API!</h1>
-  </header>
-  <section class="basic-information">
-    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time.</p>
-    <p>This is the backend application supplying endpoints for MediMindeRx. To access our endpoints, please refer to
-      the following docs.</p>
-    <p>Choose a datatype</p>
+<body style="font-family:verdana; background-image: url('/static/background.png');">
+  <section class="basic-information" style="text-align: center;">
+    <h1>Welcome to <span style="color:#60B0F4;">MediMinde</span><span style="color:#E82C1E;">Rx</span><span style="color:#60B0F4;">-API</span>!</h1>
+    <p>MediMindeRx is a medication app allowing users to schedule reminders based off location or time. <br> This is the backend application supplying endpoints for MediMindeRx.</p><br>
+    <p>To access our endpoints, please refer to the following endpoint docs:</p>
   </section>
-  <section className="nav-buttons">
-    <button onclick="window.location.href='/api/v1'" id="start-button">Getting Started</button>
+  <section className="nav-buttons" style="text-align: center;">
+    <p>The base URL is <b>https://mediminderx-api.herokuapp.com</b></p>
+    <button onclick="window.location.href='/api/v1'" id="start-button">Demo Video</button>
     <button onclick="window.location.href='/api/v1/users-doc'" id="users-button">User Endpoints</button>
     <button onclick="window.location.href='/api/v1/reminders-doc'" id="reminders-button">Reminder Endpoints</button>
     <button onclick="window.location.href='/api/v1/schedules-doc'" id="schedules-button">Schedule Endpoints</button>
     <button onclick="window.location.href='/api/v1/locations-doc'" id="locations-button">Location Endpoints</button>
+    <button onclick="window.location.href='/api/v1/github-repo'" id="repo-button">GitHub Repo</button>
   </section>
-  <section className="starting-info">
-    <h2>Setup</h2>
-    <p>
-      Follow the steps below to get this database up and running on your local environment
-    </p>
-    <h4>Prerequisites</h4>
-    <p>
-      1. PostgreSQL installed </br>
-      Homebrew Install: https://formulae.brew.sh/formula/postgresql </br>
-      Browser Install: https://www.postgresql.org/download/ </br></br>
-
-      2. Postico Installed </br>
-      Homebrew Install: https://formulae.brew.sh/cask/postico </br>
-      Browser Install: https://eggerapps.at/postico/ </br></br>
-
-      3. Python3 Installed </br>
-      Homebrew Install: https://formulae.brew.sh/formula/python@3.8 </br>
-      Browser Install: https://www.python.org/downloads/ </br></br>
-    </p>
-    <h4>Installation</h4>
-    <p>
-      1. Clone down this repo
-      2. git clone git@github.com:MediMindeRx/MediMindeRx-API-v1.git
-      3. cd into directory MediMindeRx-API-v1
-    </p></br>
-    <h4>Initialize database for first time with</h4>
-    <p>
-      1. python3 -m venv env </br>
-      2. source env/bin/activate </br>
-      3. pip3 install -r requirements.txt </br>
-      4. createdb mediminderx </br>
-      5. export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx </br>
-      a. python migrate.py db init (this creates a db, so make sure you don’t have one already in postico) </br>
-      b. python migrate.py db migrate </br>
-      c. python migrate.py db upgrade </br>
-      d. python run.py to start the server
-    </p></br>
-
-    <h4>How to run test suite</h4>
-    <p>
-      1. createdb mediminderx_test </br>
-      2. export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx_test</br>
-      a. python migrate.py db upgrade</br>
-      b. pytest
-    </p></br>
-
-    <h4>Tech Stack</h4>
-    <p>
-      - Python3</br>
-      - Flask</br>
-      - PostgreSQL</br>
-      - Postico</br>
-      - Testing Software</br>
-      - Testing Software</br>
-    </p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <section className="demo-video" style="text-align: center;">
+    <video width="640" height="360" controls>
+      <source src={{ url_for('static', filename="demo.mp4") }} type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
   </section>
 </body>
 
