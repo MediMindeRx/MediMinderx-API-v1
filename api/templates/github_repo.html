@@ -58,9 +58,9 @@
       <li>pip3 install -r requirements.txt</li>
       <li>createdb mediminderx</li>
       <li>export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx</li>
-      <li>python migrate.py db init (this creates a db, so make sure you don’t have one already in postico)</li>
-      <li>python migrate.py db migrate</li>
-      <li>python migrate.py db upgrade</li>
+      <li>python manage.py db init (this creates a db, so make sure you don’t have one already in postico)</li>
+      <li>python manage.py db migrate</li>
+      <li>python manage.py db upgrade</li>
       <li>python run.py to start the server</li>
     </ol>
 
@@ -70,7 +70,7 @@
       <li>createdb mediminderx_test</li>
       <li>export DATABASE_URL==postgresql://"YOUR USERNAME":"YOUR PASSWORD"@localhost:5432/mediminderx_test</li>
         <ul>
-          <li>python migrate.py db upgrade</li>
+          <li>python manage.py db upgrade</li>
           <li>pytest</li>
         </ul>
     </ol>
