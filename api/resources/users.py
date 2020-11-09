@@ -79,12 +79,29 @@ class UsersResource(Resource):
         results = users_schema.dump(users)
         return results, 200
 
-    def patch(self, *args, **kwargs):
-        json_data = request.get_json(force=True)
-        user_id = int(bleach.clean(json_data['id'].strip()))
+
+class UserResource(Resource):
+    """
+    this Resource file is for our /users endpoints which do require
+    a resource ID in the URI path
+    GET /users/6
+    """
+    def get(self, *args, **kwargs):
+        user_id = int(bleach.clean(kwargs['user_id'].strip()))
         user = None
         try:
-            user = User.query.filter_by(id=json_data['id']).first()
+            user = db.session.query(User).filter_by(id=user_id).one()
+        except NoResultFound:
+            return abort(404)
+
+        result = user_schema.dump(user)
+        return result, 200
+
+    def patch(self, *args, **kwargs):
+        user_id = int(bleach.clean(kwargs['user_id'].strip()))
+        user = None
+        try:
+            user = User.query.filter_by(id=user_id).first()
         except NoResultFound:
             return abort(404)
 
@@ -109,30 +126,12 @@ class UsersResource(Resource):
         return result, 201
 
     def delete(self, *args, **kwargs):
-        json_data = request.get_json(force=True)
+        user_id = kwargs['user_id']
         user = None
         try:
-            user = User.query.filter_by(id=json_data['id']).first()
+            user = User.query.filter_by(id=user_id).first()
         except NoResultFound:
             return abort(404)
 
         user.delete()
         return {'message': 'User has been successfully deleted'}, 200
-
-
-class UserResource(Resource):
-    """
-    this Resource file is for our /users endpoints which do require
-    a resource ID in the URI path
-    GET /users/6
-    """
-    def get(self, *args, **kwargs):
-        user_id = int(bleach.clean(kwargs['user_id'].strip()))
-        user = None
-        try:
-            user = db.session.query(User).filter_by(id=user_id).one()
-        except NoResultFound:
-            return abort(404)
-
-        result = user_schema.dump(user)
-        return result, 200

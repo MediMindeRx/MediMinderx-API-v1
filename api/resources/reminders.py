@@ -74,12 +74,23 @@ class RemindersResource(Resource):
         results = reminders_schema.dump(reminders)
         return results, 200
 
-    def patch(self, *args, **kwargs):
-        json_data = request.get_json(force=True)
-        reminder_id = int(bleach.clean(json_data['id'].strip()))
+class ReminderResource(Resource):
+    def get(self, *args, **kwargs):
+        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
         reminder = None
         try:
-            reminder = Reminder.query.filter_by(id=json_data['id']).first()
+            reminder = db.session.query(Reminder).filter_by(id=reminder_id).one()
+        except NoResultFound:
+            return abort(404)
+
+        result = reminder_schema.dump(reminder)
+        return result, 200
+
+    def patch(self, *args, **kwargs):
+        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
+        reminder = None
+        try:
+            reminder = Reminder.query.filter_by(id=reminder_id).first()
         except NoResultFound:
             return abort(404)
 
@@ -112,27 +123,15 @@ class RemindersResource(Resource):
         return result, 200
 
     def delete(self, *args, **kwargs):
-        json_data = request.get_json(force=True)
+        reminder_id = kwargs['reminder_id']
         reminder = None
         try:
-            reminder = Reminder.query.filter_by(id=json_data['id']).first()
+            reminder = Reminder.query.filter_by(id=reminder_id).first()
         except NoResultFound:
             return abort(404)
 
         reminder.delete()
         return {'message': 'Reminder successfully deleted'}, 200
-
-class ReminderResource(Resource):
-    def get(self, *args, **kwargs):
-        reminder_id = int(bleach.clean(kwargs['reminder_id'].strip()))
-        reminder = None
-        try:
-            reminder = db.session.query(Reminder).filter_by(id=reminder_id).one()
-        except NoResultFound:
-            return abort(404)
-
-        result = reminder_schema.dump(reminder)
-        return result, 200
 
 class UsersRemindersResource(Resource):
     def get(self, *args, **kwargs):
