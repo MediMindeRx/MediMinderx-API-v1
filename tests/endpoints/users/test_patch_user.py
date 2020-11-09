@@ -25,7 +25,7 @@ class PatchuserTest(unittest.TestCase):
             'id': f'{self.user_1.id}',
             'name': ' new_name '
         }
-    # 
+    #
     # def tearDown(self):
     #     db.session.remove()
     #     db_drop_everything(db)
@@ -35,7 +35,7 @@ class PatchuserTest(unittest.TestCase):
         payload = deepcopy(self.payload)
 
         response = self.client.patch(
-            f'/api/v1/users',
+            f'/api/v1/users/{self.user_1.id}',
             json=payload,
             content_type='application/json'
         )
@@ -53,7 +53,7 @@ class PatchuserTest(unittest.TestCase):
         payload['name'] = ''
 
         response = self.client.patch(
-            f'/api/v1/users',
+            f'/api/v1/users/{self.user_1.id}',
             json=payload,
             content_type='application/json'
         )

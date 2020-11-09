@@ -31,7 +31,7 @@ class DeleteUserTest(unittest.TestCase):
         payload = deepcopy(self.payload)
 
         response = self.client.delete(
-            '/api/v1/users', json=payload,
+            f'/api/v1/users/{self.user_1.id}', json=payload,
             content_type='application/json'
         )
         self.assertEqual(200, response.status_code)
