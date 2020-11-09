@@ -11,6 +11,7 @@ The most difficult and rewarding thing about building this application was picki
 
 ## Deployment
 Check out our deployed site! [MediMindeRx](https://mediminderx-api.herokuapp.com/api/v1/)
+Check out our demo video! [MediMindeRx Demo](https://www.youtube.com/watch?v=5JbgWp6fjRc&feature=youtu.be)
 
 
 ## Set up
