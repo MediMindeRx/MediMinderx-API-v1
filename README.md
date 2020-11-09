@@ -367,7 +367,7 @@ Response:
 ```
 
 
-### POST `https://mediminderx-api.herokuapp.com/api/v1/users/1/locations`
+### POST `https://mediminderx-api.herokuapp.com/api/v1/locations`
 
 Body:
 ```json{}
