@@ -156,7 +156,7 @@ Response:
 ```
 
 
-### PUT `https://mediminderx-api.herokuapp.com/api/v1/users`
+### PATCH `https://mediminderx-api.herokuapp.com/api/v1/users/1`
 
 Body:
 ```json {
@@ -180,13 +180,11 @@ Response:
 ```
 
 
-### DELETE `https://mediminderx-api.herokuapp.com/api/v1/users`
+### DELETE `https://mediminderx-api.herokuapp.com/api/v1/users/1`
 
 Body:
 ```json{}
-{
-  "id": "1"
-}
+NO BODY
 ```
 
 Response:
@@ -229,7 +227,7 @@ Response:
 ```
 
 
-### PUT `https://mediminderx-api.herokuapp.com/api/v1/reminders`
+### PATCH `https://mediminderx-api.herokuapp.com/api/v1/reminders/1`
 
 Body:
 ```json{}
@@ -261,10 +259,10 @@ Response:
 ```
 
 
-### DELETE `https://mediminderx-api.herokuapp.com/api/v1/reminders`
+### DELETE `https://mediminderx-api.herokuapp.com/api/v1/reminders/3`
 
 Body:
-`{ "id": "3" }`
+`NO BODY`
 
 Response:
 ```json{}
